@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.1;net45;net451;net461;net48</TargetFrameworks>
+    <Authors>Luis Eduardo Cochachi Chamorro</Authors>
+    <Company>Liiksoft</Company>
+    <Description>Light Parallel Invocation and Asynchronous Parallel Invocation.
+
+- ParallelEx.Invoke, ParallelEx.Invoke &lt;T&gt;, ParallelEx.InvokeAsync, ParallelEx.InvokeAsync &lt;T&gt;.
+- ParallelEx&lt;T,...,T7&gt;. EventHandler.</Description>
+    <PackageTags>Parallel, ParallelEx</PackageTags>
+    <PackageLicenseExpression>MIT OR Apache-2.0</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageIcon>package.png</PackageIcon>
+    <PackageIconUrl />
+    <PackageProjectUrl>https://github.com/cochachyLE-Eng/Vaetech.Threading.Task</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/cochachyLE-Eng/Vaetech.Threading.Task</RepositoryUrl>
+    <Version>1.0.4</Version>
+    <AssemblyName>Vaetech.Threading.Tasks</AssemblyName>
+    <RootNamespace>Vaetech.Threading.Tasks</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+    <PackageReference Include="Vaetech.Data.ContentResult" Version="1.6.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\icons\package.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
