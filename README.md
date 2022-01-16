@@ -92,7 +92,8 @@ will allow Vaetech.Threading.Tasks to build successfully.
 
 ### How can it be used?
 
-Use the following code samples according to your requirements.
+There are two types of processes RunAll and RunInOrder,
+RunAll executes all the processes at the same time without respecting the order. RunInOrder executes the process one by one. The default Process Type is RunAll.
 
 ```csharp
 using Vaetech.Threading.Tasks;
@@ -241,17 +242,6 @@ public static async Task SampleMethodDynamicResultOption1Async()
             string[] value = d.Data;
         }                
     })
-    );
-}
-
-// Execute all methods with different result at the same time. (Option 2)
-public static async Task SampleMethodDynamicResultOption2Async()
-{
-    await Parallel.InvokeAsync(ProcessType.RunAll,
-    () => (SampleMethodWithResult1Async("[1] Process 1", 200), (ActionResult a) => { var value = (DateTime[])a.Data; }),
-    () => (SampleMethodWithResult2Async("[2] Process 2", 500), (ActionResult a) => { var value = (string[])a.Data; }),
-    () => (SampleMethodWithResult1Async("[1] Process 3", 400), (ActionResult a) => { var value = (DateTime[])a.Data; }),
-    () => (SampleMethodWithResult2Async("[2] Process 4", 300), (ActionResult a) => { var value = (string[])a.Data; })
     );
 }
 
