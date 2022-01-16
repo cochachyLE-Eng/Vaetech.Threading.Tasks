@@ -1,5 +1,17 @@
 ﻿namespace Vaetech.Threading.Tasks
 {
+    public enum ProcessType
+    {
+        Default = 0,
+        /// <summary>
+        /// Run everything at the same time.
+        /// </summary>
+        RunAll = 0,
+        /// <summary>
+        /// Run in order of entry.
+        /// </summary>
+        RunInOrder
+    }
     public enum Processors
     {
         None = 0,

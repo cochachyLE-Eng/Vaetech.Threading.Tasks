@@ -2,33 +2,37 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Vaetech.Data.ContentResult.Events;
-
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~!
+* Owners: Liiksoft
+* Create by Luis Eduardo Cochachi Chamorro
+* License: MIT or Apache-2.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~!*/
 namespace Vaetech.Threading.Tasks
 {
     public class Parallel<T, T1, T2, T3, T4, T5>
     {
-        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> _dynamicEventHandler;
-        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> _dynamicEventHandlerOne;
-        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> _dynamicEventHandlerTwo;
-        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> _dynamicEventHandlerThree;
-        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> _dynamicEventHandlerFour;
-        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> _dynamicEventHandlerFive;
-        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> _dynamicEventHandlerSix;
-        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> _dynamicEventHandlerSeven;
-        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> _dynamicEventHandlerEight;
-        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> _dynamicEventHandlerNine;
-        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> _dynamicEventHandlerTen;
-        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> _dynamicEventHandlerEleven;
-        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> _dynamicEventHandlerTwelve;
-        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> _dynamicEventHandlerThirteen;
-        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> _dynamicEventHandlerFourteen;
-        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> _dynamicEventHandlerFifteen;
-        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> _dynamicEventHandlerSixteen;
-        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> _dynamicEventHandlerSeventeen;
-        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> _dynamicEventHandlerEighteen;
-        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> _dynamicEventHandlerNineteen;
-        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> _dynamicEventHandlerTwenty;
-        public void InitParallel(Processors processors, List<T> list, T1 item1, T2 item2, T3 item3, T4 item4, T5 item5)
+        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> DynamicEventHandler;
+        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> DynamicEventHandlerOne;
+        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> DynamicEventHandlerTwo;
+        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> DynamicEventHandlerThree;
+        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> DynamicEventHandlerFour;
+        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> DynamicEventHandlerFive;
+        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> DynamicEventHandlerSix;
+        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> DynamicEventHandlerSeven;
+        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> DynamicEventHandlerEight;
+        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> DynamicEventHandlerNine;
+        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> DynamicEventHandlerTen;
+        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> DynamicEventHandlerEleven;
+        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> DynamicEventHandlerTwelve;
+        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> DynamicEventHandlerThirteen;
+        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> DynamicEventHandlerFourteen;
+        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> DynamicEventHandlerFifteen;
+        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> DynamicEventHandlerSixteen;
+        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> DynamicEventHandlerSeventeen;
+        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> DynamicEventHandlerEighteen;
+        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> DynamicEventHandlerNineteen;
+        public event DynamicEventHandler<IEnumerable<T>, T1, T2, T3, T4, T5> DynamicEventHandlerTwenty;
+        public void Run(Processors processors, List<T> list, T1 item1, T2 item2, T3 item3, T4 item4, T5 item5)
         {
             if (list == null)
                 return;
@@ -42,424 +46,689 @@ namespace Vaetech.Threading.Tasks
             {
                 case Processors.One:
                     {
-                        Parallel.Invoke(
-                            () => OnSendParameters(1, list, item1, item2, item3, item4, item5)
-                        );
+                        Parallel.InvokeEvent<T, T1, T2, T3, T4, T5>(() => (OnSendParameters(1, list, item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)));
                     }
                     break;
                 case Processors.Two:
                     {
-                        Parallel.Invoke(
-                            () => OnSendParameters(1, list.GetRange((process * 0), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(2, list.GetRange((process * 1), list.Count - (process * 1)), item1, item2, item3, item4, item5)
+                        Parallel.InvokeEvent<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParameters(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParameters(2, list.GetRange(process * 1, list.Count - process * 1), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e))
                         );
                     }
                     break;
                 case Processors.Three:
                     {
-                        Parallel.Invoke(
-                            () => OnSendParameters(1, list.GetRange((process * 0), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(2, list.GetRange((process * 1), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(3, list.GetRange((process * 2), list.Count - (process * 2)), item1, item2, item3, item4, item5)
+                        Parallel.InvokeEvent<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParameters(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParameters(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParameters(3, list.GetRange(process * 2, list.Count - process * 2), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e))
                         );
                     }
                     break;
                 case Processors.Four:
                     {
-                        Parallel.Invoke(
-                            () => OnSendParameters(1, list.GetRange((process * 0), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(2, list.GetRange((process * 1), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(3, list.GetRange((process * 2), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(4, list.GetRange((process * 3), list.Count - (process * 3)), item1, item2, item3, item4, item5)
+                        Parallel.InvokeEvent<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParameters(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParameters(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParameters(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParameters(4, list.GetRange(process * 3, list.Count - process * 3), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e))
                         );
                     }
                     break;
                 case Processors.Five:
                     {
-                        Parallel.Invoke(
-                            () => OnSendParameters(1, list.GetRange((process * 0), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(2, list.GetRange((process * 1), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(3, list.GetRange((process * 2), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(4, list.GetRange((process * 3), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(5, list.GetRange((process * 4), list.Count - (process * 4)), item1, item2, item3, item4, item5)
+                        Parallel.InvokeEvent<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParameters(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParameters(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParameters(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParameters(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParameters(5, list.GetRange(process * 4, list.Count - process * 4), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e))
                         );
                     }
                     break;
                 case Processors.Six:
                     {
-                        Parallel.Invoke(
-                            () => OnSendParameters(1, list.GetRange((process * 0), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(2, list.GetRange((process * 1), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(3, list.GetRange((process * 2), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(4, list.GetRange((process * 3), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(5, list.GetRange((process * 4), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(6, list.GetRange((process * 5), list.Count - (process * 5)), item1, item2, item3, item4, item5)
+                        Parallel.InvokeEvent<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParameters(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParameters(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParameters(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParameters(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParameters(5, list.GetRange(process * 4, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e)),
+                            () => (OnSendParameters(6, list.GetRange(process * 5, list.Count - process * 5), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSix?.Invoke(null, e))
                         );
                     }
                     break;
                 case Processors.Seven:
                     {
-                        Parallel.Invoke(
-                            () => OnSendParameters(1, list.GetRange((process * 0), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(2, list.GetRange((process * 1), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(3, list.GetRange((process * 2), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(4, list.GetRange((process * 3), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(5, list.GetRange((process * 4), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(6, list.GetRange((process * 5), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(7, list.GetRange((process * 6), list.Count - (process * 6)), item1, item2, item3, item4, item5)
+                        Parallel.InvokeEvent<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParameters(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParameters(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParameters(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParameters(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParameters(5, list.GetRange(process * 4, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e)),
+                            () => (OnSendParameters(6, list.GetRange(process * 5, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSix?.Invoke(null, e)),
+                            () => (OnSendParameters(7, list.GetRange(process * 6, list.Count - process * 6), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeven?.Invoke(null, e))
                         );
                     }
                     break;
                 case Processors.Eight:
                     {
-                        Parallel.Invoke(
-                            () => OnSendParameters(1, list.GetRange((process * 0), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(2, list.GetRange((process * 1), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(3, list.GetRange((process * 2), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(4, list.GetRange((process * 3), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(5, list.GetRange((process * 4), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(6, list.GetRange((process * 5), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(7, list.GetRange((process * 6), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(8, list.GetRange((process * 7), list.Count - (process * 7)), item1, item2, item3, item4, item5)
+                        Parallel.InvokeEvent<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParameters(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParameters(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParameters(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParameters(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParameters(5, list.GetRange(process * 4, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e)),
+                            () => (OnSendParameters(6, list.GetRange(process * 5, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSix?.Invoke(null, e)),
+                            () => (OnSendParameters(7, list.GetRange(process * 6, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeven?.Invoke(null, e)),
+                            () => (OnSendParameters(8, list.GetRange(process * 7, list.Count - process * 7), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEight?.Invoke(null, e))
                         );
                     }
                     break;
                 case Processors.Nine:
                     {
-                        Parallel.Invoke(
-                            () => OnSendParameters(1, list.GetRange((process * 0), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(2, list.GetRange((process * 1), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(3, list.GetRange((process * 2), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(4, list.GetRange((process * 3), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(5, list.GetRange((process * 4), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(6, list.GetRange((process * 5), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(7, list.GetRange((process * 6), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(8, list.GetRange((process * 7), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(9, list.GetRange((process * 8), list.Count - (process * 8)), item1, item2, item3, item4, item5)
+                        Parallel.InvokeEvent<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParameters(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParameters(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParameters(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParameters(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParameters(5, list.GetRange(process * 4, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e)),
+                            () => (OnSendParameters(6, list.GetRange(process * 5, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSix?.Invoke(null, e)),
+                            () => (OnSendParameters(7, list.GetRange(process * 6, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeven?.Invoke(null, e)),
+                            () => (OnSendParameters(8, list.GetRange(process * 7, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEight?.Invoke(null, e)),
+                            () => (OnSendParameters(9, list.GetRange(process * 8, list.Count - process * 8), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerNine?.Invoke(null, e))
                         );
                     }
                     break;
                 case Processors.Ten:
                     {
-                        Parallel.Invoke(
-                            () => OnSendParameters(1, list.GetRange((process * 0), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(2, list.GetRange((process * 1), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(3, list.GetRange((process * 2), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(4, list.GetRange((process * 3), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(5, list.GetRange((process * 4), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(6, list.GetRange((process * 5), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(7, list.GetRange((process * 6), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(8, list.GetRange((process * 7), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(9, list.GetRange((process * 8), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(10, list.GetRange((process * 9), list.Count - (process * 9)), item1, item2, item3, item4, item5)
+                        Parallel.InvokeEvent<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParameters(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParameters(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParameters(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParameters(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParameters(5, list.GetRange(process * 4, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e)),
+                            () => (OnSendParameters(6, list.GetRange(process * 5, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSix?.Invoke(null, e)),
+                            () => (OnSendParameters(7, list.GetRange(process * 6, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeven?.Invoke(null, e)),
+                            () => (OnSendParameters(8, list.GetRange(process * 7, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEight?.Invoke(null, e)),
+                            () => (OnSendParameters(9, list.GetRange(process * 8, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerNine?.Invoke(null, e)),
+                            () => (OnSendParameters(10, list.GetRange(process * 9, list.Count - process * 9), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTen?.Invoke(null, e))
                         );
                     }
                     break;
                 case Processors.Eleven:
                     {
-                        Parallel.Invoke(
-                            () => OnSendParameters(1, list.GetRange((process * 0), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(2, list.GetRange((process * 1), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(3, list.GetRange((process * 2), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(4, list.GetRange((process * 3), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(5, list.GetRange((process * 4), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(6, list.GetRange((process * 5), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(7, list.GetRange((process * 6), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(8, list.GetRange((process * 7), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(9, list.GetRange((process * 8), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(10, list.GetRange((process * 9), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(11, list.GetRange((process * 10), list.Count - (process * 10)), item1, item2, item3, item4, item5)
+                        Parallel.InvokeEvent<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParameters(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParameters(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParameters(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParameters(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParameters(5, list.GetRange(process * 4, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e)),
+                            () => (OnSendParameters(6, list.GetRange(process * 5, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSix?.Invoke(null, e)),
+                            () => (OnSendParameters(7, list.GetRange(process * 6, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeven?.Invoke(null, e)),
+                            () => (OnSendParameters(8, list.GetRange(process * 7, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEight?.Invoke(null, e)),
+                            () => (OnSendParameters(9, list.GetRange(process * 8, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerNine?.Invoke(null, e)),
+                            () => (OnSendParameters(10, list.GetRange(process * 9, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTen?.Invoke(null, e)),
+                            () => (OnSendParameters(11, list.GetRange(process * 10, list.Count - process * 10), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEleven?.Invoke(null, e))
                         );
                     }
                     break;
                 case Processors.Twelve:
                     {
-                        Parallel.Invoke(
-                            () => OnSendParameters(1, list.GetRange((process * 0), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(2, list.GetRange((process * 1), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(3, list.GetRange((process * 2), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(4, list.GetRange((process * 3), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(5, list.GetRange((process * 4), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(6, list.GetRange((process * 5), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(7, list.GetRange((process * 6), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(8, list.GetRange((process * 7), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(9, list.GetRange((process * 8), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(10, list.GetRange((process * 9), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(11, list.GetRange((process * 10), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(12, list.GetRange((process * 11), list.Count - (process * 11)), item1, item2, item3, item4, item5)
+                        Parallel.InvokeEvent<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParameters(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParameters(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParameters(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParameters(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParameters(5, list.GetRange(process * 4, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e)),
+                            () => (OnSendParameters(6, list.GetRange(process * 5, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSix?.Invoke(null, e)),
+                            () => (OnSendParameters(7, list.GetRange(process * 6, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeven?.Invoke(null, e)),
+                            () => (OnSendParameters(8, list.GetRange(process * 7, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEight?.Invoke(null, e)),
+                            () => (OnSendParameters(9, list.GetRange(process * 8, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerNine?.Invoke(null, e)),
+                            () => (OnSendParameters(10, list.GetRange(process * 9, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTen?.Invoke(null, e)),
+                            () => (OnSendParameters(11, list.GetRange(process * 10, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEleven?.Invoke(null, e)),
+                            () => (OnSendParameters(12, list.GetRange(process * 11, list.Count - process * 11), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwelve?.Invoke(null, e))
                         );
                     }
                     break;
                 case Processors.Thirteen:
                     {
-                        Parallel.Invoke(
-                            () => OnSendParameters(1, list.GetRange((process * 0), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(2, list.GetRange((process * 1), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(3, list.GetRange((process * 2), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(4, list.GetRange((process * 3), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(5, list.GetRange((process * 4), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(6, list.GetRange((process * 5), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(7, list.GetRange((process * 6), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(8, list.GetRange((process * 7), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(9, list.GetRange((process * 8), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(10, list.GetRange((process * 9), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(11, list.GetRange((process * 10), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(12, list.GetRange((process * 11), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(13, list.GetRange((process * 12), list.Count - (process * 12)), item1, item2, item3, item4, item5)
+                        Parallel.InvokeEvent<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParameters(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParameters(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParameters(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParameters(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParameters(5, list.GetRange(process * 4, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e)),
+                            () => (OnSendParameters(6, list.GetRange(process * 5, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSix?.Invoke(null, e)),
+                            () => (OnSendParameters(7, list.GetRange(process * 6, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeven?.Invoke(null, e)),
+                            () => (OnSendParameters(8, list.GetRange(process * 7, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEight?.Invoke(null, e)),
+                            () => (OnSendParameters(9, list.GetRange(process * 8, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerNine?.Invoke(null, e)),
+                            () => (OnSendParameters(10, list.GetRange(process * 9, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTen?.Invoke(null, e)),
+                            () => (OnSendParameters(11, list.GetRange(process * 10, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEleven?.Invoke(null, e)),
+                            () => (OnSendParameters(12, list.GetRange(process * 11, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwelve?.Invoke(null, e)),
+                            () => (OnSendParameters(13, list.GetRange(process * 12, list.Count - process * 12), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThirteen?.Invoke(null, e))
                         );
                     }
                     break;
                 case Processors.Fourteen:
                     {
-                        Parallel.Invoke(
-                            () => OnSendParameters(1, list.GetRange((process * 0), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(2, list.GetRange((process * 1), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(3, list.GetRange((process * 2), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(4, list.GetRange((process * 3), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(5, list.GetRange((process * 4), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(6, list.GetRange((process * 5), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(7, list.GetRange((process * 6), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(8, list.GetRange((process * 7), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(9, list.GetRange((process * 8), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(10, list.GetRange((process * 9), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(11, list.GetRange((process * 10), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(12, list.GetRange((process * 11), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(13, list.GetRange((process * 12), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(14, list.GetRange((process * 13), list.Count - (process * 13)), item1, item2, item3, item4, item5)
+                        Parallel.InvokeEvent<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParameters(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParameters(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParameters(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParameters(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParameters(5, list.GetRange(process * 4, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e)),
+                            () => (OnSendParameters(6, list.GetRange(process * 5, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSix?.Invoke(null, e)),
+                            () => (OnSendParameters(7, list.GetRange(process * 6, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeven?.Invoke(null, e)),
+                            () => (OnSendParameters(8, list.GetRange(process * 7, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEight?.Invoke(null, e)),
+                            () => (OnSendParameters(9, list.GetRange(process * 8, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerNine?.Invoke(null, e)),
+                            () => (OnSendParameters(10, list.GetRange(process * 9, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTen?.Invoke(null, e)),
+                            () => (OnSendParameters(11, list.GetRange(process * 10, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEleven?.Invoke(null, e)),
+                            () => (OnSendParameters(12, list.GetRange(process * 11, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwelve?.Invoke(null, e)),
+                            () => (OnSendParameters(13, list.GetRange(process * 12, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThirteen?.Invoke(null, e)),
+                            () => (OnSendParameters(14, list.GetRange(process * 13, list.Count - process * 13), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFourteen?.Invoke(null, e))
                         );
                     }
                     break;
                 case Processors.Fifteen:
                     {
-                        Parallel.Invoke(
-                            () => OnSendParameters(1, list.GetRange((process * 0), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(2, list.GetRange((process * 1), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(3, list.GetRange((process * 2), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(4, list.GetRange((process * 3), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(5, list.GetRange((process * 4), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(6, list.GetRange((process * 5), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(7, list.GetRange((process * 6), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(8, list.GetRange((process * 7), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(9, list.GetRange((process * 8), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(10, list.GetRange((process * 9), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(11, list.GetRange((process * 10), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(12, list.GetRange((process * 11), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(13, list.GetRange((process * 12), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(14, list.GetRange((process * 13), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(15, list.GetRange((process * 14), list.Count - (process * 14)), item1, item2, item3, item4, item5)
+                        Parallel.InvokeEvent<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParameters(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParameters(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParameters(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParameters(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParameters(5, list.GetRange(process * 4, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e)),
+                            () => (OnSendParameters(6, list.GetRange(process * 5, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSix?.Invoke(null, e)),
+                            () => (OnSendParameters(7, list.GetRange(process * 6, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeven?.Invoke(null, e)),
+                            () => (OnSendParameters(8, list.GetRange(process * 7, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEight?.Invoke(null, e)),
+                            () => (OnSendParameters(9, list.GetRange(process * 8, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerNine?.Invoke(null, e)),
+                            () => (OnSendParameters(10, list.GetRange(process * 9, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTen?.Invoke(null, e)),
+                            () => (OnSendParameters(11, list.GetRange(process * 10, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEleven?.Invoke(null, e)),
+                            () => (OnSendParameters(12, list.GetRange(process * 11, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwelve?.Invoke(null, e)),
+                            () => (OnSendParameters(13, list.GetRange(process * 12, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThirteen?.Invoke(null, e)),
+                            () => (OnSendParameters(14, list.GetRange(process * 13, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFourteen?.Invoke(null, e)),
+                            () => (OnSendParameters(15, list.GetRange(process * 14, list.Count - process * 14), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFifteen?.Invoke(null, e))
                         );
                     }
                     break;
                 case Processors.Sixteen:
                     {
-                        Parallel.Invoke(
-                            () => OnSendParameters(1, list.GetRange((process * 0), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(2, list.GetRange((process * 1), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(3, list.GetRange((process * 2), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(4, list.GetRange((process * 3), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(5, list.GetRange((process * 4), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(6, list.GetRange((process * 5), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(7, list.GetRange((process * 6), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(8, list.GetRange((process * 7), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(9, list.GetRange((process * 8), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(10, list.GetRange((process * 9), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(11, list.GetRange((process * 10), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(12, list.GetRange((process * 11), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(13, list.GetRange((process * 12), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(14, list.GetRange((process * 13), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(15, list.GetRange((process * 14), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(16, list.GetRange((process * 15), list.Count - (process * 15)), item1, item2, item3, item4, item5)
+                        Parallel.InvokeEvent<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParameters(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParameters(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParameters(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParameters(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParameters(5, list.GetRange(process * 4, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e)),
+                            () => (OnSendParameters(6, list.GetRange(process * 5, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSix?.Invoke(null, e)),
+                            () => (OnSendParameters(7, list.GetRange(process * 6, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeven?.Invoke(null, e)),
+                            () => (OnSendParameters(8, list.GetRange(process * 7, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEight?.Invoke(null, e)),
+                            () => (OnSendParameters(9, list.GetRange(process * 8, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerNine?.Invoke(null, e)),
+                            () => (OnSendParameters(10, list.GetRange(process * 9, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTen?.Invoke(null, e)),
+                            () => (OnSendParameters(11, list.GetRange(process * 10, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEleven?.Invoke(null, e)),
+                            () => (OnSendParameters(12, list.GetRange(process * 11, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwelve?.Invoke(null, e)),
+                            () => (OnSendParameters(13, list.GetRange(process * 12, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThirteen?.Invoke(null, e)),
+                            () => (OnSendParameters(14, list.GetRange(process * 13, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFourteen?.Invoke(null, e)),
+                            () => (OnSendParameters(15, list.GetRange(process * 14, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFifteen?.Invoke(null, e)),
+                            () => (OnSendParameters(16, list.GetRange(process * 15, list.Count - process * 15), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSixteen?.Invoke(null, e))
                         );
                     }
                     break;
                 case Processors.Seventeen:
                     {
-                        Parallel.Invoke(
-                            () => OnSendParameters(1, list.GetRange((process * 0), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(2, list.GetRange((process * 1), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(3, list.GetRange((process * 2), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(4, list.GetRange((process * 3), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(5, list.GetRange((process * 4), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(6, list.GetRange((process * 5), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(7, list.GetRange((process * 6), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(8, list.GetRange((process * 7), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(9, list.GetRange((process * 8), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(10, list.GetRange((process * 9), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(11, list.GetRange((process * 10), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(12, list.GetRange((process * 11), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(13, list.GetRange((process * 12), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(14, list.GetRange((process * 13), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(15, list.GetRange((process * 14), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(16, list.GetRange((process * 15), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(17, list.GetRange((process * 16), list.Count - (process * 16)), item1, item2, item3, item4, item5)
+                        Parallel.InvokeEvent<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParameters(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParameters(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParameters(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParameters(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParameters(5, list.GetRange(process * 4, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e)),
+                            () => (OnSendParameters(6, list.GetRange(process * 5, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSix?.Invoke(null, e)),
+                            () => (OnSendParameters(7, list.GetRange(process * 6, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeven?.Invoke(null, e)),
+                            () => (OnSendParameters(8, list.GetRange(process * 7, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEight?.Invoke(null, e)),
+                            () => (OnSendParameters(9, list.GetRange(process * 8, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerNine?.Invoke(null, e)),
+                            () => (OnSendParameters(10, list.GetRange(process * 9, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTen?.Invoke(null, e)),
+                            () => (OnSendParameters(11, list.GetRange(process * 10, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEleven?.Invoke(null, e)),
+                            () => (OnSendParameters(12, list.GetRange(process * 11, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwelve?.Invoke(null, e)),
+                            () => (OnSendParameters(13, list.GetRange(process * 12, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThirteen?.Invoke(null, e)),
+                            () => (OnSendParameters(14, list.GetRange(process * 13, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFourteen?.Invoke(null, e)),
+                            () => (OnSendParameters(15, list.GetRange(process * 14, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFifteen?.Invoke(null, e)),
+                            () => (OnSendParameters(16, list.GetRange(process * 15, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSixteen?.Invoke(null, e)),
+                            () => (OnSendParameters(17, list.GetRange(process * 16, list.Count - process * 16), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeventeen?.Invoke(null, e))
                         );
                     }
                     break;
                 case Processors.Eighteen:
                     {
-                        Parallel.Invoke(
-                            () => OnSendParameters(1, list.GetRange((process * 0), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(2, list.GetRange((process * 1), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(3, list.GetRange((process * 2), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(4, list.GetRange((process * 3), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(5, list.GetRange((process * 4), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(6, list.GetRange((process * 5), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(7, list.GetRange((process * 6), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(8, list.GetRange((process * 7), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(9, list.GetRange((process * 8), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(10, list.GetRange((process * 9), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(11, list.GetRange((process * 10), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(12, list.GetRange((process * 11), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(13, list.GetRange((process * 12), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(14, list.GetRange((process * 13), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(15, list.GetRange((process * 14), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(16, list.GetRange((process * 15), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(17, list.GetRange((process * 16), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(18, list.GetRange((process * 17), list.Count - (process * 17)), item1, item2, item3, item4, item5)
+                        Parallel.InvokeEvent<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParameters(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParameters(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParameters(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParameters(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParameters(5, list.GetRange(process * 4, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e)),
+                            () => (OnSendParameters(6, list.GetRange(process * 5, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSix?.Invoke(null, e)),
+                            () => (OnSendParameters(7, list.GetRange(process * 6, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeven?.Invoke(null, e)),
+                            () => (OnSendParameters(8, list.GetRange(process * 7, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEight?.Invoke(null, e)),
+                            () => (OnSendParameters(9, list.GetRange(process * 8, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerNine?.Invoke(null, e)),
+                            () => (OnSendParameters(10, list.GetRange(process * 9, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTen?.Invoke(null, e)),
+                            () => (OnSendParameters(11, list.GetRange(process * 10, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEleven?.Invoke(null, e)),
+                            () => (OnSendParameters(12, list.GetRange(process * 11, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwelve?.Invoke(null, e)),
+                            () => (OnSendParameters(13, list.GetRange(process * 12, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThirteen?.Invoke(null, e)),
+                            () => (OnSendParameters(14, list.GetRange(process * 13, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFourteen?.Invoke(null, e)),
+                            () => (OnSendParameters(15, list.GetRange(process * 14, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFifteen?.Invoke(null, e)),
+                            () => (OnSendParameters(16, list.GetRange(process * 15, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSixteen?.Invoke(null, e)),
+                            () => (OnSendParameters(17, list.GetRange(process * 16, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeventeen?.Invoke(null, e)),
+                            () => (OnSendParameters(18, list.GetRange(process * 17, list.Count - process * 17), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEighteen?.Invoke(null, e))
                         );
                     }
                     break;
                 case Processors.Nineteen:
                     {
-                        Parallel.Invoke(
-                            () => OnSendParameters(1, list.GetRange((process * 0), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(2, list.GetRange((process * 1), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(3, list.GetRange((process * 2), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(4, list.GetRange((process * 3), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(5, list.GetRange((process * 4), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(6, list.GetRange((process * 5), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(7, list.GetRange((process * 6), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(8, list.GetRange((process * 7), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(9, list.GetRange((process * 8), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(10, list.GetRange((process * 9), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(11, list.GetRange((process * 10), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(12, list.GetRange((process * 11), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(13, list.GetRange((process * 12), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(14, list.GetRange((process * 13), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(15, list.GetRange((process * 14), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(16, list.GetRange((process * 15), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(17, list.GetRange((process * 16), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(18, list.GetRange((process * 17), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(19, list.GetRange((process * 18), list.Count - (process * 18)), item1, item2, item3, item4, item5)
+                        Parallel.InvokeEvent<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParameters(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParameters(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParameters(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParameters(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParameters(5, list.GetRange(process * 4, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e)),
+                            () => (OnSendParameters(6, list.GetRange(process * 5, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSix?.Invoke(null, e)),
+                            () => (OnSendParameters(7, list.GetRange(process * 6, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeven?.Invoke(null, e)),
+                            () => (OnSendParameters(8, list.GetRange(process * 7, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEight?.Invoke(null, e)),
+                            () => (OnSendParameters(9, list.GetRange(process * 8, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerNine?.Invoke(null, e)),
+                            () => (OnSendParameters(10, list.GetRange(process * 9, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTen?.Invoke(null, e)),
+                            () => (OnSendParameters(11, list.GetRange(process * 10, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEleven?.Invoke(null, e)),
+                            () => (OnSendParameters(12, list.GetRange(process * 11, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwelve?.Invoke(null, e)),
+                            () => (OnSendParameters(13, list.GetRange(process * 12, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThirteen?.Invoke(null, e)),
+                            () => (OnSendParameters(14, list.GetRange(process * 13, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFourteen?.Invoke(null, e)),
+                            () => (OnSendParameters(15, list.GetRange(process * 14, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFifteen?.Invoke(null, e)),
+                            () => (OnSendParameters(16, list.GetRange(process * 15, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSixteen?.Invoke(null, e)),
+                            () => (OnSendParameters(17, list.GetRange(process * 16, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeventeen?.Invoke(null, e)),
+                            () => (OnSendParameters(18, list.GetRange(process * 17, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEighteen?.Invoke(null, e)),
+                            () => (OnSendParameters(19, list.GetRange(process * 18, list.Count - process * 18), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerNineteen?.Invoke(null, e))
                         );
                     }
                     break;
                 case Processors.Twenty:
                     {
-                        Parallel.Invoke(
-                            () => OnSendParameters(1, list.GetRange((process * 0), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(2, list.GetRange((process * 1), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(3, list.GetRange((process * 2), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(4, list.GetRange((process * 3), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(5, list.GetRange((process * 4), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(6, list.GetRange((process * 5), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(7, list.GetRange((process * 6), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(8, list.GetRange((process * 7), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(9, list.GetRange((process * 8), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(10, list.GetRange((process * 9), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(11, list.GetRange((process * 10), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(12, list.GetRange((process * 11), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(13, list.GetRange((process * 12), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(14, list.GetRange((process * 13), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(15, list.GetRange((process * 14), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(16, list.GetRange((process * 15), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(17, list.GetRange((process * 16), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(18, list.GetRange((process * 17), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(19, list.GetRange((process * 18), process), item1, item2, item3, item4, item5),
-                            () => OnSendParameters(20, list.GetRange((process * 19), list.Count - (process * 19)), item1, item2, item3, item4, item5)
+                        Parallel.InvokeEvent<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParameters(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParameters(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParameters(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParameters(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParameters(5, list.GetRange(process * 4, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e)),
+                            () => (OnSendParameters(6, list.GetRange(process * 5, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSix?.Invoke(null, e)),
+                            () => (OnSendParameters(7, list.GetRange(process * 6, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeven?.Invoke(null, e)),
+                            () => (OnSendParameters(8, list.GetRange(process * 7, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEight?.Invoke(null, e)),
+                            () => (OnSendParameters(9, list.GetRange(process * 8, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerNine?.Invoke(null, e)),
+                            () => (OnSendParameters(10, list.GetRange(process * 9, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTen?.Invoke(null, e)),
+                            () => (OnSendParameters(11, list.GetRange(process * 10, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEleven?.Invoke(null, e)),
+                            () => (OnSendParameters(12, list.GetRange(process * 11, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwelve?.Invoke(null, e)),
+                            () => (OnSendParameters(13, list.GetRange(process * 12, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThirteen?.Invoke(null, e)),
+                            () => (OnSendParameters(14, list.GetRange(process * 13, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFourteen?.Invoke(null, e)),
+                            () => (OnSendParameters(15, list.GetRange(process * 14, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFifteen?.Invoke(null, e)),
+                            () => (OnSendParameters(16, list.GetRange(process * 15, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSixteen?.Invoke(null, e)),
+                            () => (OnSendParameters(17, list.GetRange(process * 16, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeventeen?.Invoke(null, e)),
+                            () => (OnSendParameters(18, list.GetRange(process * 17, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEighteen?.Invoke(null, e)),
+                            () => (OnSendParameters(19, list.GetRange(process * 18, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerNineteen?.Invoke(null, e)),
+                            () => (OnSendParameters(20, list.GetRange(process * 19, list.Count - process * 19), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwenty?.Invoke(null, e))
                         );
                     }
                     break;
             }
         }
-        private void OnSendParameters(int process, IEnumerable<T> list, T1 item1, T2 item2, T3 item3, T4 item4, T5 item5)
+        public async Task RunAsync(Processors processors, List<T> list, T1 item1, T2 item2, T3 item3, T4 item4, T5 item5)
         {
-            if (_dynamicEventHandler != null)
-                _dynamicEventHandler(this, new DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4, T5>(list, item1, item2, item3, item4, item5));
+            if (list == null)
+                return;
 
-            switch ((Processors)process)
+            if (processors == Processors.None)
+                processors = Processors.One;
+
+            var process = (int)processors == 0 ? 0 : Convert.ToInt32(list.Count / (int)processors);
+            List<T> ls = new List<T>();
+
+            switch (processors)
             {
                 case Processors.One:
-                    if (_dynamicEventHandlerOne != null)
-                        _dynamicEventHandlerOne(this, new DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4, T5>(list, item1, item2, item3, item4, item5));
+                    {
+                        await Parallel.InvokeEventAsync<T, T1, T2, T3, T4, T5>(() => (OnSendParametersAsync(1, list, item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)));
+                    }
                     break;
                 case Processors.Two:
-                    if (_dynamicEventHandlerTwo != null)
-                        _dynamicEventHandlerTwo(this, new DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4, T5>(list, item1, item2, item3, item4, item5));
+                    {
+                        await Parallel.InvokeEventAsync<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParametersAsync(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(2, list.GetRange(process * 1, list.Count - process * 1), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e))
+                        );
+                    }
                     break;
                 case Processors.Three:
-                    if (_dynamicEventHandlerThree != null)
-                        _dynamicEventHandlerThree(this, new DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4, T5>(list, item1, item2, item3, item4, item5));
+                    {
+                        await Parallel.InvokeEventAsync<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParametersAsync(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(3, list.GetRange(process * 2, list.Count - process * 2), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e))
+                        );
+                    }
                     break;
                 case Processors.Four:
-                    if (_dynamicEventHandlerFour != null)
-                        _dynamicEventHandlerFour(this, new DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4, T5>(list, item1, item2, item3, item4, item5));
+                    {
+                        await Parallel.InvokeEventAsync<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParametersAsync(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(4, list.GetRange(process * 3, list.Count - process * 3), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e))
+                        );
+                    }
                     break;
                 case Processors.Five:
-                    if (_dynamicEventHandlerFive != null)
-                        _dynamicEventHandlerFive(this, new DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4, T5>(list, item1, item2, item3, item4, item5));
+                    {
+                        await Parallel.InvokeEventAsync<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParametersAsync(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(5, list.GetRange(process * 4, list.Count - process * 4), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e))
+                        );
+                    }
                     break;
                 case Processors.Six:
-                    if (_dynamicEventHandlerSix != null)
-                        _dynamicEventHandlerSix(this, new DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4, T5>(list, item1, item2, item3, item4, item5));
+                    {
+                        await Parallel.InvokeEventAsync<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParametersAsync(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(5, list.GetRange(process * 4, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(6, list.GetRange(process * 5, list.Count - process * 5), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSix?.Invoke(null, e))
+                        );
+                    }
                     break;
                 case Processors.Seven:
-                    if (_dynamicEventHandlerSeven != null)
-                        _dynamicEventHandlerSeven(this, new DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4, T5>(list, item1, item2, item3, item4, item5));
+                    {
+                        await Parallel.InvokeEventAsync<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParametersAsync(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(5, list.GetRange(process * 4, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(6, list.GetRange(process * 5, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSix?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(7, list.GetRange(process * 6, list.Count - process * 6), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeven?.Invoke(null, e))
+                        );
+                    }
                     break;
                 case Processors.Eight:
-                    if (_dynamicEventHandlerEight != null)
-                        _dynamicEventHandlerEight(this, new DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4, T5>(list, item1, item2, item3, item4, item5));
+                    {
+                        await Parallel.InvokeEventAsync<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParametersAsync(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(5, list.GetRange(process * 4, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(6, list.GetRange(process * 5, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSix?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(7, list.GetRange(process * 6, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeven?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(8, list.GetRange(process * 7, list.Count - process * 7), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEight?.Invoke(null, e))
+                        );
+                    }
                     break;
                 case Processors.Nine:
-                    if (_dynamicEventHandlerNine != null)
-                        _dynamicEventHandlerNine(this, new DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4, T5>(list, item1, item2, item3, item4, item5));
+                    {
+                        await Parallel.InvokeEventAsync<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParametersAsync(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(5, list.GetRange(process * 4, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(6, list.GetRange(process * 5, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSix?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(7, list.GetRange(process * 6, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeven?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(8, list.GetRange(process * 7, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEight?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(9, list.GetRange(process * 8, list.Count - process * 8), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerNine?.Invoke(null, e))
+                        );
+                    }
                     break;
                 case Processors.Ten:
-                    if (_dynamicEventHandlerTen != null)
-                        _dynamicEventHandlerTen(this, new DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4, T5>(list, item1, item2, item3, item4, item5));
+                    {
+                        await Parallel.InvokeEventAsync<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParametersAsync(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(5, list.GetRange(process * 4, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(6, list.GetRange(process * 5, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSix?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(7, list.GetRange(process * 6, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeven?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(8, list.GetRange(process * 7, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEight?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(9, list.GetRange(process * 8, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerNine?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(10, list.GetRange(process * 9, list.Count - process * 9), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTen?.Invoke(null, e))
+                        );
+                    }
                     break;
                 case Processors.Eleven:
-                    if (_dynamicEventHandlerEleven != null)
-                        _dynamicEventHandlerEleven(this, new DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4, T5>(list, item1, item2, item3, item4, item5));
+                    {
+                        await Parallel.InvokeEventAsync<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParametersAsync(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(5, list.GetRange(process * 4, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(6, list.GetRange(process * 5, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSix?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(7, list.GetRange(process * 6, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeven?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(8, list.GetRange(process * 7, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEight?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(9, list.GetRange(process * 8, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerNine?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(10, list.GetRange(process * 9, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(11, list.GetRange(process * 10, list.Count - process * 10), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEleven?.Invoke(null, e))
+                        );
+                    }
                     break;
                 case Processors.Twelve:
-                    if (_dynamicEventHandlerTwelve != null)
-                        _dynamicEventHandlerTwelve(this, new DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4, T5>(list, item1, item2, item3, item4, item5));
+                    {
+                        await Parallel.InvokeEventAsync<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParametersAsync(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(5, list.GetRange(process * 4, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(6, list.GetRange(process * 5, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSix?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(7, list.GetRange(process * 6, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeven?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(8, list.GetRange(process * 7, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEight?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(9, list.GetRange(process * 8, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerNine?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(10, list.GetRange(process * 9, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(11, list.GetRange(process * 10, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEleven?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(12, list.GetRange(process * 11, list.Count - process * 11), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwelve?.Invoke(null, e))
+                        );
+                    }
                     break;
                 case Processors.Thirteen:
-                    if (_dynamicEventHandlerThirteen != null)
-                        _dynamicEventHandlerThirteen(this, new DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4, T5>(list, item1, item2, item3, item4, item5));
+                    {
+                        await Parallel.InvokeEventAsync<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParametersAsync(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(5, list.GetRange(process * 4, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(6, list.GetRange(process * 5, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSix?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(7, list.GetRange(process * 6, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeven?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(8, list.GetRange(process * 7, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEight?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(9, list.GetRange(process * 8, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerNine?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(10, list.GetRange(process * 9, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(11, list.GetRange(process * 10, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEleven?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(12, list.GetRange(process * 11, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwelve?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(13, list.GetRange(process * 12, list.Count - process * 12), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThirteen?.Invoke(null, e))
+                        );
+                    }
                     break;
                 case Processors.Fourteen:
-                    if (_dynamicEventHandlerFourteen != null)
-                        _dynamicEventHandlerFourteen(this, new DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4, T5>(list, item1, item2, item3, item4, item5));
+                    {
+                        await Parallel.InvokeEventAsync<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParametersAsync(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(5, list.GetRange(process * 4, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(6, list.GetRange(process * 5, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSix?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(7, list.GetRange(process * 6, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeven?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(8, list.GetRange(process * 7, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEight?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(9, list.GetRange(process * 8, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerNine?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(10, list.GetRange(process * 9, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(11, list.GetRange(process * 10, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEleven?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(12, list.GetRange(process * 11, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwelve?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(13, list.GetRange(process * 12, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThirteen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(14, list.GetRange(process * 13, list.Count - process * 13), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFourteen?.Invoke(null, e))
+                        );
+                    }
                     break;
                 case Processors.Fifteen:
-                    if (_dynamicEventHandlerFifteen != null)
-                        _dynamicEventHandlerFifteen(this, new DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4, T5>(list, item1, item2, item3, item4, item5));
+                    {
+                        await Parallel.InvokeEventAsync<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParametersAsync(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(5, list.GetRange(process * 4, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(6, list.GetRange(process * 5, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSix?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(7, list.GetRange(process * 6, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeven?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(8, list.GetRange(process * 7, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEight?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(9, list.GetRange(process * 8, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerNine?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(10, list.GetRange(process * 9, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(11, list.GetRange(process * 10, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEleven?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(12, list.GetRange(process * 11, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwelve?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(13, list.GetRange(process * 12, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThirteen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(14, list.GetRange(process * 13, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFourteen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(15, list.GetRange(process * 14, list.Count - process * 14), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFifteen?.Invoke(null, e))
+                        );
+                    }
                     break;
                 case Processors.Sixteen:
-                    if (_dynamicEventHandlerSixteen != null)
-                        _dynamicEventHandlerSixteen(this, new DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4, T5>(list, item1, item2, item3, item4, item5));
+                    {
+                        await Parallel.InvokeEventAsync<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParametersAsync(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(5, list.GetRange(process * 4, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(6, list.GetRange(process * 5, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSix?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(7, list.GetRange(process * 6, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeven?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(8, list.GetRange(process * 7, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEight?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(9, list.GetRange(process * 8, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerNine?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(10, list.GetRange(process * 9, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(11, list.GetRange(process * 10, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEleven?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(12, list.GetRange(process * 11, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwelve?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(13, list.GetRange(process * 12, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThirteen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(14, list.GetRange(process * 13, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFourteen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(15, list.GetRange(process * 14, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFifteen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(16, list.GetRange(process * 15, list.Count - process * 15), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSixteen?.Invoke(null, e))
+                        );
+                    }
                     break;
                 case Processors.Seventeen:
-                    if (_dynamicEventHandlerSeventeen != null)
-                        _dynamicEventHandlerSeventeen(this, new DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4, T5>(list, item1, item2, item3, item4, item5));
+                    {
+                        await Parallel.InvokeEventAsync<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParametersAsync(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(5, list.GetRange(process * 4, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(6, list.GetRange(process * 5, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSix?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(7, list.GetRange(process * 6, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeven?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(8, list.GetRange(process * 7, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEight?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(9, list.GetRange(process * 8, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerNine?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(10, list.GetRange(process * 9, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(11, list.GetRange(process * 10, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEleven?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(12, list.GetRange(process * 11, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwelve?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(13, list.GetRange(process * 12, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThirteen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(14, list.GetRange(process * 13, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFourteen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(15, list.GetRange(process * 14, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFifteen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(16, list.GetRange(process * 15, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSixteen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(17, list.GetRange(process * 16, list.Count - process * 16), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeventeen?.Invoke(null, e))
+                        );
+                    }
                     break;
                 case Processors.Eighteen:
-                    if (_dynamicEventHandlerEighteen != null)
-                        _dynamicEventHandlerEighteen(this, new DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4, T5>(list, item1, item2, item3, item4, item5));
+                    {
+                        await Parallel.InvokeEventAsync<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParametersAsync(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(5, list.GetRange(process * 4, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(6, list.GetRange(process * 5, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSix?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(7, list.GetRange(process * 6, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeven?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(8, list.GetRange(process * 7, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEight?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(9, list.GetRange(process * 8, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerNine?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(10, list.GetRange(process * 9, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(11, list.GetRange(process * 10, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEleven?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(12, list.GetRange(process * 11, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwelve?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(13, list.GetRange(process * 12, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThirteen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(14, list.GetRange(process * 13, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFourteen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(15, list.GetRange(process * 14, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFifteen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(16, list.GetRange(process * 15, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSixteen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(17, list.GetRange(process * 16, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeventeen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(18, list.GetRange(process * 17, list.Count - process * 17), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEighteen?.Invoke(null, e))
+                        );
+                    }
                     break;
                 case Processors.Nineteen:
-                    if (_dynamicEventHandlerNineteen != null)
-                        _dynamicEventHandlerNineteen(this, new DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4, T5>(list, item1, item2, item3, item4, item5));
+                    {
+                        await Parallel.InvokeEventAsync<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParametersAsync(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(5, list.GetRange(process * 4, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(6, list.GetRange(process * 5, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSix?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(7, list.GetRange(process * 6, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeven?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(8, list.GetRange(process * 7, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEight?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(9, list.GetRange(process * 8, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerNine?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(10, list.GetRange(process * 9, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(11, list.GetRange(process * 10, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEleven?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(12, list.GetRange(process * 11, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwelve?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(13, list.GetRange(process * 12, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThirteen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(14, list.GetRange(process * 13, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFourteen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(15, list.GetRange(process * 14, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFifteen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(16, list.GetRange(process * 15, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSixteen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(17, list.GetRange(process * 16, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeventeen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(18, list.GetRange(process * 17, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEighteen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(19, list.GetRange(process * 18, list.Count - process * 18), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerNineteen?.Invoke(null, e))
+                        );
+                    }
                     break;
                 case Processors.Twenty:
-                    if (_dynamicEventHandlerTwenty != null)
-                        _dynamicEventHandlerTwenty(this, new DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4, T5>(list, item1, item2, item3, item4, item5));
+                    {
+                        await Parallel.InvokeEventAsync<T, T1, T2, T3, T4, T5>(
+                            () => (OnSendParametersAsync(1, list.GetRange(0, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerOne?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(2, list.GetRange(process * 1, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwo?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(3, list.GetRange(process * 2, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThree?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(4, list.GetRange(process * 3, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFour?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(5, list.GetRange(process * 4, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFive?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(6, list.GetRange(process * 5, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSix?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(7, list.GetRange(process * 6, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeven?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(8, list.GetRange(process * 7, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEight?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(9, list.GetRange(process * 8, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerNine?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(10, list.GetRange(process * 9, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(11, list.GetRange(process * 10, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEleven?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(12, list.GetRange(process * 11, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwelve?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(13, list.GetRange(process * 12, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerThirteen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(14, list.GetRange(process * 13, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFourteen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(15, list.GetRange(process * 14, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerFifteen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(16, list.GetRange(process * 15, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSixteen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(17, list.GetRange(process * 16, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerSeventeen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(18, list.GetRange(process * 17, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerEighteen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(19, list.GetRange(process * 18, process), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerNineteen?.Invoke(null, e)),
+                            () => (OnSendParametersAsync(20, list.GetRange(process * 19, list.Count - process * 19), item1, item2, item3, item4, item5), item1, item2, item3, item4, item5, (e) => DynamicEventHandlerTwenty?.Invoke(null, e))
+                        );
+                    }
                     break;
             }
+        }
+        private IEnumerable<T> OnSendParameters(int process, IEnumerable<T> list, T1 item1, T2 item2, T3 item3, T4 item4, T5 item5)
+        {
+            DynamicEventHandler?.Invoke(null, new DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4, T5>(list, item1, item2, item3, item4, item5));
+            return list;
+        }
+        private async Task<IEnumerable<T>> OnSendParametersAsync(int process, IEnumerable<T> list, T1 item1, T2 item2, T3 item3, T4 item4, T5 item5)
+        {
+            return await Task.Run(() =>
+            {
+                DynamicEventHandler?.Invoke(null, new DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4, T5>(list, item1, item2, item3, item4, item5));
+                return list;
+            });
         }
     }
 }

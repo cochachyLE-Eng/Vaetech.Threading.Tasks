@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;net45;net451;net461;net48</TargetFrameworks>
+  <PropertyGroup>    
+	<TargetFrameworks>netstandard2.1;net45;net451;net46;net461;net472;net48</TargetFrameworks>
     <Authors>Luis Eduardo Cochachi Chamorro</Authors>
     <Company>Liiksoft</Company>
     <Description>Light Parallel Invocation and Asynchronous Parallel Invocation.</Description>
@@ -12,14 +12,14 @@
     <PackageIconUrl />
     <PackageProjectUrl>https://github.com/cochachyLE-Eng/Vaetech.Threading.Tasks</PackageProjectUrl>
     <RepositoryUrl>https://github.com/cochachyLE-Eng/Vaetech.Threading.Tasks</RepositoryUrl>
-    <Version>1.0.6</Version>
+    <Version>1.0.7.2</Version>
     <AssemblyName>Vaetech.Threading.Tasks</AssemblyName>
     <RootNamespace>Vaetech.Threading.Tasks</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
-    <PackageReference Include="Vaetech.Data.ContentResult" Version="1.6.7" />
+    <PackageReference Include="Vaetech.Data.ContentResult" Version="1.6.9" />
   </ItemGroup>
 
   <ItemGroup>
