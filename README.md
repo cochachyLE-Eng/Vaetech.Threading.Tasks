@@ -97,7 +97,7 @@ There are two types of processes <code>RunAll</code> and <code>Enqueue</code>. T
 | Type | Behavior |
 | :---: | :--- |
 |`RunAll`| Executes all the processes at the same time without respecting the order. This allows each terminated thread to work on the data without waiting for all tasks to complete.| 
-|`Enqueue`|, executes the process one by one in the order of input.|
+|`Enqueue`| Executes the process one by one in the order of input. This allows threads to be debugged in order of entry.|
 
 ```csharp
 using Vaetech.Threading.Tasks;
