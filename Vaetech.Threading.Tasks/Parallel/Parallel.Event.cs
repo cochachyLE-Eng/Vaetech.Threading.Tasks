@@ -348,7 +348,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.RunInOrder:
+                case ProcessType.Enqueue:
                     {
                         foreach (Func<(IEnumerable<T> action, Action<DynamicEventArgs<IEnumerable<T>>> result)> action in actions)
                             Task.Run(() => RunEvent(action)).Wait();
@@ -372,7 +372,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.RunInOrder:
+                case ProcessType.Enqueue:
                     {
                         foreach (Func<(IEnumerable<T> action, T1 item1, Action<DynamicEventArgs<IEnumerable<T>,T1>> result)> action in actions)
                             Task.Run(() => RunEvent<T, T1>(action)).Wait();
@@ -396,7 +396,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.RunInOrder:
+                case ProcessType.Enqueue:
                     {
                         foreach (Func<(IEnumerable<T> action, T1 item1, T2 item2, Action<DynamicEventArgs<IEnumerable<T>, T1, T2>> result)> action in actions)
                             Task.Run(() => RunEvent<T, T1, T2>(action)).Wait();
@@ -420,7 +420,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.RunInOrder:
+                case ProcessType.Enqueue:
                     {
                         foreach (Func<(IEnumerable<T> action, T1 item1, T2 item2, T3 item3, Action<DynamicEventArgs<IEnumerable<T>, T1, T2, T3>> result)> action in actions)
                             Task.Run(() => RunEvent<T, T1, T2, T3>(action)).Wait();
@@ -444,7 +444,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.RunInOrder:
+                case ProcessType.Enqueue:
                     {
                         foreach (Func<(IEnumerable<T> action, T1 item1, T2 item2, T3 item3, T4 item4, Action<DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4>> result)> action in actions)
                             Task.Run(() => RunEvent<T, T1, T2, T3, T4>(action)).Wait();
@@ -468,7 +468,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.RunInOrder:
+                case ProcessType.Enqueue:
                     {
                         foreach (Func<(IEnumerable<T> action, T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, Action<DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4, T5>> result)> action in actions)
                             Task.Run(() => RunEvent<T, T1, T2, T3, T4, T5>(action)).Wait();
@@ -492,7 +492,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.RunInOrder:
+                case ProcessType.Enqueue:
                     {
                         foreach (Func<(IEnumerable<T> action, T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6, Action<DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4, T5, T6>> result)> action in actions)
                             Task.Run(() => RunEvent<T, T1, T2, T3, T4, T5, T6>(action)).Wait();
@@ -516,7 +516,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.RunInOrder:
+                case ProcessType.Enqueue:
                     {
                         foreach (Func<(IEnumerable<T> action, T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6, T7 item7, Action<DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4, T5, T6, T7>> result)> action in actions)
                             Task.Run(() => RunEvent<T, T1, T2, T3, T4, T5, T6, T7>(action)).Wait();
@@ -543,7 +543,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.RunInOrder:
+                case ProcessType.Enqueue:
                     {
                         foreach (Func<(String action, Action<DynamicEventArgs<String>> result)> action in actions)
                             Task.Run(() => RunEvent(action)).Wait();
@@ -567,7 +567,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.RunInOrder:
+                case ProcessType.Enqueue:
                     {
                         foreach (Func<(String[] action, Action<DynamicEventArgs<String[]>> result)> action in actions)
                             Task.Run(() => RunEvent(action)).Wait();
@@ -594,7 +594,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.RunInOrder:
+                case ProcessType.Enqueue:
                     {
                         foreach (Func<(T action, Action<DynamicEventArgs<T>> result)> action in actions)
                             Task.Run(() => RunEvent(action)).Wait();
@@ -618,7 +618,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.RunInOrder:
+                case ProcessType.Enqueue:
                     {
                         foreach (Func<(T[] action, Action<DynamicEventArgs<T[]>> result)> action in actions)
                             Task.Run(() => RunEvent(action)).Wait();
@@ -645,7 +645,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.RunInOrder:
+                case ProcessType.Enqueue:
                     {
                         foreach (Func<(ActionResult<T> action, Action<DynamicEventArgs<ActionResult<T>>> result)> action in actions)
                             Task.Run(() => RunEvent<T>(action)).Wait();
@@ -673,7 +673,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.RunInOrder:
+                case ProcessType.Enqueue:
                     {
                         foreach (Func<(Task<IEnumerable<T>> action, Action<DynamicEventArgs<IEnumerable<T>>> result)> action in actions)
                             await RunEventAsync<T, Exception>(action);
@@ -698,7 +698,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.RunInOrder:
+                case ProcessType.Enqueue:
                     {
                         foreach (Func<(Task<IEnumerable<T>> action, T1 item1, Action<DynamicEventArgs<IEnumerable<T>,T1>> result)> action in actions)
                             await RunEventAsync<T, T1, Exception>(action);
@@ -723,7 +723,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.RunInOrder:
+                case ProcessType.Enqueue:
                     {
                         foreach (Func<(Task<IEnumerable<T>> action, T1 item1, T2 item2, Action<DynamicEventArgs<IEnumerable<T>, T1, T2>> result)> action in actions)
                             await RunEventAsync<T, T1, T2, Exception>(action);
@@ -748,7 +748,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.RunInOrder:
+                case ProcessType.Enqueue:
                     {
                         foreach (Func<(Task<IEnumerable<T>> action, T1 item1, T2 item2, T3 item3, Action<DynamicEventArgs<IEnumerable<T>, T1, T2, T3>> result)> action in actions)
                             await RunEventAsync<T, T1, T2, T3, Exception>(action);
@@ -773,7 +773,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.RunInOrder:
+                case ProcessType.Enqueue:
                     {
                         foreach (Func<(Task<IEnumerable<T>> action, T1 item1, T2 item2, T3 item3, T4 item4, Action<DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4>> result)> action in actions)
                             await RunEventAsync<T, T1, T2, T3, T4, Exception>(action);
@@ -798,7 +798,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.RunInOrder:
+                case ProcessType.Enqueue:
                     {
                         foreach (Func<(Task<IEnumerable<T>> action, T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, Action<DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4, T5>> result)> action in actions)
                             await RunEventAsync<T, T1, T2, T3, T4, T5, Exception>(action);
@@ -823,7 +823,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.RunInOrder:
+                case ProcessType.Enqueue:
                     {
                         foreach (Func<(Task<IEnumerable<T>> action, T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6, Action<DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4, T5, T6>> result)> action in actions)
                             await RunEventAsync<T, T1, T2, T3, T4, T5, T6, Exception>(action);
@@ -848,7 +848,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.RunInOrder:
+                case ProcessType.Enqueue:
                     {
                         foreach (Func<(Task<IEnumerable<T>> action, T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6, T7 item7, Action<DynamicEventArgs<IEnumerable<T>, T1, T2, T3, T4, T5, T6, T7>> result)> action in actions)
                             await RunEventAsync<T, T1, T2, T3, T4, T5, T6, T7, Exception>(action);
@@ -876,7 +876,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.RunInOrder:
+                case ProcessType.Enqueue:
                     {
                         foreach (Func<(Task<String> action, Action<DynamicEventArgs<String>> result)> action in actions)
                             await RunEventAsync<Exception>(action);
@@ -901,7 +901,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.RunInOrder:
+                case ProcessType.Enqueue:
                     {
                         foreach (Func<(Task<String[]> action, Action<DynamicEventArgs<String[]>> result)> action in actions)
                             await RunEventAsync<Exception>(action);
@@ -929,7 +929,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.RunInOrder:
+                case ProcessType.Enqueue:
                     {
                         foreach (Func<(Task<T> action, Action<DynamicEventArgs<T>> result)> action in actions)
                             await RunEventAsync<T, Exception>(action);
@@ -954,7 +954,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.RunInOrder:
+                case ProcessType.Enqueue:
                     {
                         foreach (Func<(Task<T[]> action, Action<DynamicEventArgs<T[]>> result)> action in actions)
                             await RunEventAsync<T, Exception>(action);
@@ -982,7 +982,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.RunInOrder:
+                case ProcessType.Enqueue:
                     {
                         foreach (Func<(Task<ActionResult<T>> action, Action<DynamicEventArgs<ActionResult<T>>> result)> action in actions)
                             await RunEventAsync<T, Exception>(action);
@@ -1010,7 +1010,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.RunInOrder:
+                case ProcessType.Enqueue:
                     {
                         foreach (Func<(Task action, Action<DynamicEventArgs<object>> result)> action in actions)
                             await RunEventAsync<Exception>(action);

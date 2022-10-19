@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Vaetech.Data.ContentResult;
-using Vaetech.Data.ContentResult.Events;
-using Vaetech.Threading.Tasks;
 using Parallel = Vaetech.Threading.Tasks.Parallel;
 
 namespace Vaetech.Threading.Tasks.Console
@@ -22,7 +20,7 @@ namespace Vaetech.Threading.Tasks.Console
         {
             ActionResult actionResult = Parallel.Invoke(() => SampleMethod("Process 0"));           
 
-            if(actionResult.IB_Exception)
+            if(actionResult.IbException)
                 System.Console.WriteLine("[0] Error: {0}", actionResult.Message);
             else
                 System.Console.WriteLine("[0] successful process!");
@@ -49,7 +47,7 @@ namespace Vaetech.Threading.Tasks.Console
             System.Console.WriteLine("Run RunInOrder [2] - Asynchronous");
             System.Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
-            Parallel.Invoke(ProcessType.RunInOrder,
+            Parallel.Invoke(ProcessType.Enqueue,
                 () => SampleMethod("[2] Process 5"),
                 () => SampleMethod("[2] Process 4"),
                 () => SampleMethod("[2] Process 3"),
@@ -63,12 +61,7 @@ namespace Vaetech.Threading.Tasks.Console
         {
             await Parallel.InvokeAsync(() => SampleMethodAsync("Async Process 0"));
             System.Console.WriteLine("[0] successful async process!");
-        }
-        public static async Task InvokeAsync_WithResult()
-        {
-            ActionResult<DateTime[]> result = await Parallel.InvokeAsync(() => SampleMethodWithResultAsync("Async Process 0"));            
-            System.Console.WriteLine("successful async process!");
-        }
+        }        
         public static async Task InvokeAndRunAllAsync()
         {
             System.Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -88,7 +81,7 @@ namespace Vaetech.Threading.Tasks.Console
             System.Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             System.Console.WriteLine("Run RunInOrder [2] - Asynchronous");
             System.Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            await Parallel.InvokeAsync(ProcessType.RunInOrder,
+            await Parallel.InvokeAsync(ProcessType.Enqueue,
                 () => SampleMethodAsync("[2] Process 5"),
                 () => SampleMethodAsync("[2] Process 4"),
                 () => SampleMethodAsync("[2] Process 3"),
@@ -143,16 +136,16 @@ namespace Vaetech.Threading.Tasks.Console
                 System.Console.WriteLine("end {0} {1}", processName, (dateTimes[1] = DateTime.Now).ToString("hh:mm:ss fff"));
 
                 return dateTimes;
-            });
+            }); 
         }
         // Execute all methods with different result at the same time.
         public static async Task SampleMethodDynamicResultAsync()
-        {
+        {   
             await Parallel.InvokeAsync(ProcessType.RunAll,
-            () => (SampleMethodWithResult1Async("[1] Process 1", 200), (ActionResult a) => { var value = (DateTime[])a.Data; }),
-            () => (SampleMethodWithResult2Async("[2] Process 2", 500), (ActionResult a) => { var value = (string[])a.Data; }),
-            () => (SampleMethodWithResult1Async("[1] Process 3", 400), (ActionResult a) => { var value = (DateTime[])a.Data; }),
-            () => (SampleMethodWithResult2Async("[2] Process 4", 300), (ActionResult a) => { var value = (string[])a.Data; })
+            (rq) => rq.RunAsync(() => SampleMethodWithResult1Async("[1] Process 1", 200), (ActionResult<DateTime[]> a) => { var value = a.Value; }),
+            (rq) => rq.RunAsync(() => SampleMethodWithResult2Async("[2] Process 2", 500), (ActionResult a) => { var value = (string[])a.Data; }),
+            (rq) => rq.RunAsync(() => SampleMethodWithResult1Async("[1] Process 3", 400), (ActionResult a) => { var value = (DateTime[])a.Data; }),
+            (rq) => rq.RunAsync(() => SampleMethodWithResult2Async("[2] Process 4", 300), (ActionResult a) => { var value = (string[])a.Data; })
             );
         }
 
@@ -201,7 +194,7 @@ namespace Vaetech.Threading.Tasks.Console
             System.Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             System.Console.WriteLine("Run RunInOrder [4]");
             System.Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            Parallel.Invoke(ProcessType.RunInOrder,
+            Parallel.Invoke(ProcessType.Enqueue,
                 () => SampleMethod("[4] method5"),
                 () => SampleMethod("[4] method4"),
                 () => SampleMethod("[4] method3"),
@@ -229,38 +222,38 @@ namespace Vaetech.Threading.Tasks.Console
                 );
 
             await Parallel.InvokeAsync(
-                () => (SampleMethodWithResultAsync("1", 200), (ActionResult a) => { var value = (DateTime[])a.Data; }),
-                () => (SampleMethodWithResultAsync("2", 200), (ActionResult a) => { var value = (DateTime[])a.Data; }),
-                () => (SampleMethodWithResultAsync("3", 200), (ActionResult a) => { var value = (DateTime[])a.Data; }),
-                () => (SampleMethodWithResultAsync("4", 200), (ActionResult a) => { var value = (DateTime[])a.Data; })
+                (rq) => rq.RunAsync(() => SampleMethodWithResultAsync("1", 200), (ActionResult a) => { var value = (DateTime[])a.Data; }),
+                (rq) => rq.RunAsync(() => SampleMethodWithResultAsync("2", 200), (ActionResult a) => { var value = (DateTime[])a.Data; }),
+                (rq) => rq.RunAsync(() => SampleMethodWithResultAsync("3", 200), (ActionResult a) => { var value = (DateTime[])a.Data; }),
+                (rq) => rq.RunAsync(() => SampleMethodWithResultAsync("4", 200), (ActionResult a) => { var value = (DateTime[])a.Data; })
                 );
             
-            await Parallel.InvokeAsync(ProcessType.RunInOrder,
-               () => (Method6("123", 2000), async (ActionResult a) => 
-               {                   
-                   System.Console.WriteLine("-> end [1] {0} {1}", a.Data, DateTime.Now.ToString("hh:mm:ss ffff"));
-                   await Task.Delay(2000);
-                   System.Console.WriteLine("-> end [2] {0} {1}", a.Data, DateTime.Now.ToString("hh:mm:ss ffff"));
-               }),
-               () => (Method8("123", 200), async (ActionResult a) => 
+            await Parallel.InvokeAsync(ProcessType.Enqueue,
+               (rq) => rq.RunAsync(() => Method6("123", 2000), async (ActionResult a) =>
                {
                    System.Console.WriteLine("-> end [1] {0} {1}", a.Data, DateTime.Now.ToString("hh:mm:ss ffff"));
                    await Task.Delay(2000);
                    System.Console.WriteLine("-> end [2] {0} {1}", a.Data, DateTime.Now.ToString("hh:mm:ss ffff"));
                }),
-               () => (Method6("123", 200), async (ActionResult a) =>
+               (rq) => rq.RunAsync(() => Method8("123", 200), async (ActionResult a) => 
                {
                    System.Console.WriteLine("-> end [1] {0} {1}", a.Data, DateTime.Now.ToString("hh:mm:ss ffff"));
                    await Task.Delay(2000);
                    System.Console.WriteLine("-> end [2] {0} {1}", a.Data, DateTime.Now.ToString("hh:mm:ss ffff"));
                }),
-               () => (Method7("123", 200), async (ActionResult a) => 
+               (rq) => rq.RunAsync(() => Method6("123", 200), async (ActionResult a) =>
+               {
+                   System.Console.WriteLine("-> end [1] {0} {1}", a.Data, DateTime.Now.ToString("hh:mm:ss ffff"));
+                   await Task.Delay(2000);
+                   System.Console.WriteLine("-> end [2] {0} {1}", a.Data, DateTime.Now.ToString("hh:mm:ss ffff"));
+               }),
+               (rq) => rq.RunAsync(() => Method7("123", 200), async (ActionResult a) => 
                {
                    System.Console.WriteLine("-> end [1] {0} {1}", a.Data, DateTime.Now.ToString("hh:mm:ss ffff"));
                    await Task.Delay(2000);
                    System.Console.WriteLine("-> end [2] {0} {1}", a.Data, DateTime.Now.ToString("hh:mm:ss ffff"));
                })
-               );            
+               );
 
             System.Console.WriteLine("data1: {0}", data1);
             System.Console.WriteLine("data2: {0}", data2);
@@ -271,46 +264,46 @@ namespace Vaetech.Threading.Tasks.Console
         public static async Task SampleMethodDynamicResultOption1Async()
         {
             await Parallel.InvokeAsync(ProcessType.RunAll,
-            () => Parallel.RunAsync(() => SampleMethodWithResult1Async("[1] Process 1", 200), (ActionResult<DateTime[]> a) => 
-            { 
-                DateTime[] value = a.Value;                
-            }),
-            () => Parallel.RunAsync(() => SampleMethodWithResult2Async("[2] Process 2", 500), (ActionResult<string[]> b) => 
-            { 
-                string[] value = b.Value; 
-            }),
-            () => Parallel.RunAsync(() => SampleMethodWithResult1Async("[1] Process 3", 400), (ActionResult<DateTime[]> c) => 
-            { 
-                DateTime[] value = c.Value; 
-            }),
-            () => Parallel.RunAsync(() => SampleMethodWithResult2Async("[2] Process 4", 300), (ActionResult<string[]> d) => 
+            (rq) => rq.RunAsync(() => SampleMethodWithResult1Async("[1] Process 1", 200), (ActionResult<DateTime[]> a) => 
             {
-                if (d.IB_Exception)
+                DateTime[] value = a.Value;
+            }),
+            (rq) => rq.RunAsync(() => SampleMethodWithResult2Async("[2] Process 2", 500), (ActionResult<string[]> b) =>
+            {
+                string[] value = b.Value;
+            }),
+            (rq) => rq.RunAsync(() => SampleMethodWithResult1Async("[1] Process 3", 400), (ActionResult c) =>
+            {
+                DateTime[] value = c.Data;
+            }),
+            (rq) => rq.RunAsync(() => SampleMethodWithResult2Async("[2] Process 4", 300), (ActionResult<string[]> d) =>
+            {
+                if (d.IbException)
                     System.Console.WriteLine("Error: {0}", d.Message);
                 else
                 {
                     string[] value = d.Data;
-                }                
+                }
             })
             );
         }
         // Execute all methods with different result at the same time.        
         public static async Task SampleMethodDynamicResultOption2Async()
-        {
-            await Parallel.InvokeAsync(ProcessType.RunInOrder,
-            () => (SampleMethodWithResult1Async("[1] Process 1", 200), (ActionResult a) => 
+        {            
+            await Parallel.InvokeAsync(ProcessType.RunAll,
+            (rq) => rq.RunAsync(() => SampleMethodWithResult1Async("[1] Process 1", 200), (ActionResult a) => 
             { 
                 var value = (DateTime[])a.Data; 
             }),
-            () => (SampleMethodWithResult2Async("[2] Process 2", 500), (ActionResult a) => 
+            (rq) => rq.RunAsync(() => SampleMethodWithResult2Async("[2] Process 2", 500), (ActionResult a) => 
             { 
                 var value = (string[])a.Data; 
             }),
-            () => (SampleMethodWithResult1Async("[1] Process 3", 400), (ActionResult a) => 
+            (rq) => rq.RunAsync(() => SampleMethodWithResult1Async("[1] Process 3", 400), (ActionResult a) => 
             { 
                 var value = (DateTime[])a.Data; 
             }),
-            () => (SampleMethodWithResult2Async("[2] Process 4", 300), (ActionResult a) => 
+            (rq) => rq.RunAsync(() => SampleMethodWithResult2Async("[2] Process 4", 300), (ActionResult a) => 
             { 
                 var value = (string[])a.Data; 
             })
@@ -355,7 +348,7 @@ namespace Vaetech.Threading.Tasks.Console
         {
             return await Task.Run(() => new ActionResult<int>(sleep));
         }
-        public async Task<String> MethodTestString(int sleep)
+        public async Task<string> MethodTestString(int sleep)
         {
             return await Task.Run(() => "1");
         }
@@ -375,41 +368,52 @@ namespace Vaetech.Threading.Tasks.Console
         {
             return await Task.Run(() => new List<string>());
         }
+        public async Task<IList<string>> MethodTest4_5(int sleep)
+        {
+            return await Task.Run(() => new List<string>());
+        }
+        public async Task<ICollection<string>> MethodTest4_6(int sleep)
+        {
+            return await Task.Run(() => new List<string>());
+        }
+        public async Task MethodTestEx()
+        {            
+            await Parallel.InvokeAsync(ProcessType.Enqueue,
+                (rq) => rq.RunAsync(() => MethodTestString(3), (ActionResult<string> rs) => { }),
+                (rq) => rq.RunAsync(() => MethodTest4(3), (ActionResult<int> rs) => { }),
+                (rq) => rq.RunAsync(() => MethodTest4(3), (ActionResult<int> rs) => { }),
+                (rq) => rq.RunAsync(() => MethodTestString1(3), (ActionResult<string> rs) => { }),
+                (rq) => rq.RunAsync(() => MethodTest4_1(3), (ActionResult<int> rs) => { })
+                );
+        }
         public async Task MethodTest()
         {
-            await Parallel.InvokeAsync(ProcessType.RunInOrder,
-                () => Parallel.RunAsync(() => MethodTestString(3), (ActionResult<string> a) => { }),
-                () => Parallel.RunAsync(() => MethodTest4(3), (ActionResult<int> a) => { }),
-                () => Parallel.RunAsync(() => MethodTest4(3), (ActionResult<int> a) => { }),
-                () => Parallel.RunAsync(() => MethodTestString1(3), (ActionResult<string> a) => { }),
-                () => Parallel.RunAsync(() => MethodTest4_1(3), (ActionResult<int> a) => { })
+            await Parallel.InvokeAsync(ProcessType.Enqueue,
+                (rq) => rq.RunAsync(() => MethodTestString(3), (ActionResult<string> rs) => { }),
+                (rq) => rq.RunAsync(() => MethodTest4(3), (ActionResult<int> rs) => { }),
+                (rq) => rq.RunAsync(() => MethodTest4(3), (ActionResult<int> rs) => { }),
+                (rq) => rq.RunAsync(() => MethodTestString1(3), (ActionResult<string> rs) => { }),
+                (rq) => rq.RunAsync(() => MethodTest4_1(3), (ActionResult<int> rs) => { })
                 );
 
-            await Parallel.InvokeAsync(ProcessType.RunInOrder,
-                () => Parallel.RunAsync(() => MethodTestString1(3), (ActionResult<string> a) => { }),
-                () => Parallel.RunAsync(() => MethodTest4_1(3), (ActionResult<int> a) => { }),
-                () => Parallel.RunAsync(() => MethodTest4_1(3), (ActionResult<int> a) => { })
-                );
-
-            Parallel.RunAsync<DemoClass>(() => MethodTest4_2(3), (ActionResult<DemoClass> a) => { }).Wait();
-            Parallel.RunAsync<int>(() => MethodTest4_1(3), (ActionResult<int> a) => { }).Wait();
-            Parallel.RunAsync(() => MethodTest4(3), (ActionResult<int> a) => { }).Wait();
-
-            await Parallel.InvokeAsync(ProcessType.RunInOrder,() => Parallel.RunAsync<DemoClass>(() => MethodTest4_2(3), (ActionResult<DemoClass> a) => { }));
-            await Parallel.InvokeAsync(ProcessType.RunInOrder, () => Parallel.RunAsync<int>(() => MethodTest4_1(3), (ActionResult<int> a) => { }));
-            await Parallel.InvokeAsync(ProcessType.RunInOrder, () => Parallel.RunAsync(() => MethodTest4(3), (ActionResult<int> a) => { }));
-            
-            Parallel.RunAsync(() => SampleMethodWithResult1Async("[1] Process 1", 200), (ActionResult<DateTime[]> a) => { }).Wait();
-            Parallel.RunAsync(() => MethodTestString(3), (ActionResult<string> a) => { }).Wait();
-            Parallel.RunAsync(() => MethodTest4_3(3), (ActionResult<DemoClass> a) => { }).Wait();
-
-            await Parallel.InvokeAsync(ProcessType.RunInOrder,
-                () => Parallel.RunAsync<DemoClass>(() => MethodTest4_2(3), (ActionResult<DemoClass> a) => { }),
-                () => Parallel.RunAsync<int>(() => MethodTest4_1(3), (ActionResult<int> a) => { }),
-                () => Parallel.RunAsync(() => MethodTest4(3), (ActionResult<int> a) => { }),
-                () => Parallel.RunAsync(() => MethodTest4_3(3), (ActionResult<DemoClass> a) => { }),
-                () => Parallel.RunAsync(() => MethodTest4_4(3), (ActionResult<string> a) => { })
+            await Parallel.InvokeAsync(ProcessType.Enqueue,
+                (rq) => rq.RunAsync(() => MethodTestString1(3), (ActionResult<string> rs) => { }),
+                (rq) => rq.RunAsync(() => MethodTest4_1(3), (ActionResult<int> rs) => { }),
+                (rq) => rq.RunAsync(() => MethodTest4_1(3), (ActionResult<int> rs) => { })
                 );            
+
+            await Parallel.InvokeAsync(ProcessType.Enqueue, (rq) => rq.RunAsync<DemoClass>(() => MethodTest4_2(3), (ActionResult<DemoClass> a) => { }));
+            await Parallel.InvokeAsync(ProcessType.Enqueue, (rq) => rq.RunAsync<int>(() => MethodTest4_1(3), (ActionResult<int> a) => { }));
+            await Parallel.InvokeAsync(ProcessType.Enqueue, (rq) => rq.RunAsync(() => MethodTest4(3), (ActionResult<int> a) => { }));                       
+
+            await Parallel.InvokeAsync(ProcessType.Enqueue,
+                (rq) => rq.RunAsync<DemoClass>(() => MethodTest4_2(3), (ActionResult<DemoClass> rs) => { }),
+                (rq) => rq.RunAsync<int>(() => MethodTest4_1(3), (ActionResult<int> rs) => { }),
+                (rq) => rq.RunAsync(() => MethodTest4(3), (ActionResult<int> rs) => { }),
+                (rq) => rq.RunAsync(() => MethodTest4_3(3), (ActionResult<DemoClass> rs) => { }),
+                (rq) => rq.RunAsync(() => MethodTest4_4(3), (ActionResult<string> rs) => { }),
+                (rq) => rq.RunAsync(() => MethodTest4_5(3), (ActionResult<string> rs) => { })
+                );
         }
         public class DemoClass
         {

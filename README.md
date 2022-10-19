@@ -92,8 +92,12 @@ will allow Vaetech.Threading.Tasks to build successfully.
 
 ### How can it be used?
 
-There are two types of processes RunAll and RunInOrder,
-RunAll executes all the processes at the same time without respecting the order. RunInOrder executes the process one by one. The default Process Type is RunAll.
+There are two types of processes <code>RunAll</code> and <code>Enqueue</code>. The default Process Type is <code>RunAll</code>.
+
+| Process Type | Behavior |
+|:-----------------|:----------------------------------------------------------------:|
+<code>RunAll<code>| Executes all the processes at the same time without respecting the order. This allows each terminated thread to work on the data without waiting for all tasks to complete.| 
+|<code>Enqueue<code>|, executes the process one by one in the order of input.|
 
 ```csharp
 using Vaetech.Threading.Tasks;
@@ -131,7 +135,7 @@ using Parallel = Vaetech.Threading.Tasks.Parallel;
 // Run all processes in order of entry.
 public static void InvokeAndRunInOrder()
 {    
-    Parallel.Invoke(ProcessType.RunInOrder,
+    Parallel.Invoke(ProcessType.Enqueue,
         () => SampleMethod("[2] Process 5"),
         () => SampleMethod("[2] Process 4"),
         () => SampleMethod("[2] Process 3"),
@@ -190,7 +194,7 @@ using Parallel = Vaetech.Threading.Tasks.Parallel;
 // Run all methods in order of entry (Async)
 public static async Task InvokeAndRunInOrderAsync()
 {    
-    await Parallel.InvokeAsync(ProcessType.RunInOrder,
+    await Parallel.InvokeAsync(ProcessType.Enqueue,
         () => SampleMethodAsync("[2] Process 5"),
         () => SampleMethodAsync("[2] Process 4"),
         () => SampleMethodAsync("[2] Process 3"),
@@ -221,26 +225,26 @@ using Parallel = Vaetech.Threading.Tasks.Parallel;
 public static async Task SampleMethodDynamicResultOption1Async()
 {
     await Parallel.InvokeAsync(ProcessType.RunAll,
-    () => Parallel.RunAsync(() => SampleMethodWithResult1Async("[1] Process 1", 200), (ActionResult<DateTime[]> a) => 
-    { 
-        DateTime[] value = a.Value;                
-    }),
-    () => Parallel.RunAsync(() => SampleMethodWithResult2Async("[2] Process 2", 500), (ActionResult<string[]> b) => 
-    { 
-        string[] value = b.Value; 
-    }),
-    () => Parallel.RunAsync(() => SampleMethodWithResult1Async("[1] Process 3", 400), (ActionResult<DateTime[]> c) => 
-    { 
-        DateTime[] value = c.Value; 
-    }),
-    () => Parallel.RunAsync(() => SampleMethodWithResult2Async("[2] Process 4", 300), (ActionResult<string[]> d) => 
+    (rq) => rq.RunAsync(() => SampleMethodWithResult1Async("[1] Process 1", 200), (ActionResult<DateTime[]> a) => 
     {
-        if (d.IB_Exception)
+        DateTime[] value = a.Value;
+    }),
+    (rq) => rq.RunAsync(() => SampleMethodWithResult2Async("[2] Process 2", 500), (ActionResult<string[]> b) =>
+    {
+        string[] value = b.Value;
+    }),
+    (rq) => rq.RunAsync(() => SampleMethodWithResult1Async("[1] Process 3", 400), (ActionResult c) =>
+    {
+        DateTime[] value = c.Data;
+    }),
+    (rq) => rq.RunAsync(() => SampleMethodWithResult2Async("[2] Process 4", 300), (ActionResult<string[]> d) =>
+    {
+        if (d.IbException)
             System.Console.WriteLine("Error: {0}", d.Message);
         else
         {
             string[] value = d.Data;
-        }                
+        }
     })
     );
 }

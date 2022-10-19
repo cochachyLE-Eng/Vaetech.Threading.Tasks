@@ -10,7 +10,7 @@
         /// <summary>
         /// Run in order of entry.
         /// </summary>
-        RunInOrder
+        Enqueue
     }
     public enum Processors
     {

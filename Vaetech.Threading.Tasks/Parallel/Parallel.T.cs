@@ -10,28 +10,7 @@ using Vaetech.Data.ContentResult.Events;
 namespace Vaetech.Threading.Tasks
 {
     public class Parallel<T>
-    {
-        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandler;
-        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerOne;
-        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerTwo;
-        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerThree;
-        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerFour;
-        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerFive;
-        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerSix;
-        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerSeven;
-        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerEight;
-        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerNine;
-        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerTen;
-        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerEleven;
-        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerTwelve;
-        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerThirteen;
-        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerFourteen;
-        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerFifteen;
-        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerSixteen;
-        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerSeventeen;
-        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerEighteen;
-        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerNineteen;
-        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerTwenty;
+    {        
         public void Run(Processors processors, List<T> list)
         {
             if (list == null)
@@ -730,5 +709,27 @@ namespace Vaetech.Threading.Tasks
                 return list;
             });
         }
+
+        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandler;
+        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerOne;
+        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerTwo;
+        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerThree;
+        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerFour;
+        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerFive;
+        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerSix;
+        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerSeven;
+        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerEight;
+        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerNine;
+        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerTen;
+        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerEleven;
+        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerTwelve;
+        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerThirteen;
+        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerFourteen;
+        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerFifteen;
+        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerSixteen;
+        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerSeventeen;
+        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerEighteen;
+        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerNineteen;
+        public event DynamicEventHandler<IEnumerable<T>> DynamicEventHandlerTwenty;
     }
 }

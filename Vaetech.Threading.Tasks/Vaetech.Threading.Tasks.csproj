@@ -12,14 +12,15 @@
     <PackageIconUrl />
     <PackageProjectUrl>https://github.com/cochachyLE-Eng/Vaetech.Threading.Tasks</PackageProjectUrl>
     <RepositoryUrl>https://github.com/cochachyLE-Eng/Vaetech.Threading.Tasks</RepositoryUrl>
-    <Version>1.0.7.2</Version>
+    <Version>1.0.7.3</Version>
     <AssemblyName>Vaetech.Threading.Tasks</AssemblyName>
     <RootNamespace>Vaetech.Threading.Tasks</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
-    <PackageReference Include="Vaetech.Data.ContentResult" Version="1.6.9" />
+    <PackageReference Include="Vaetech.Data.ContentResult" Version="1.8.3" />
   </ItemGroup>
 
   <ItemGroup>
