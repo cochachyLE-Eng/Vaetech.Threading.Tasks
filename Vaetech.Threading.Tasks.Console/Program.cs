@@ -50,7 +50,7 @@ namespace Vaetech.Threading.Tasks.Console
             Parallel.Invoke(ProcessType.Enqueue,
                 () => SampleMethod("[2] Process 5"),
                 () => SampleMethod("[2] Process 4"),
-                () => SampleMethod("[2] Process 3"),
+                () => SampleMethod("[2] Process 3"), 
                 () => SampleMethod("[2] Process 2"),
                 () => SampleMethod("[2] Process 1")
                 );
