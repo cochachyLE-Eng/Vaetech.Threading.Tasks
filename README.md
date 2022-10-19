@@ -94,10 +94,10 @@ will allow Vaetech.Threading.Tasks to build successfully.
 
 There are two types of processes <code>RunAll</code> and <code>Enqueue</code>. The default Process Type is <code>RunAll</code>.
 
-| Process Type | Behavior |
-|:-----------------|:----------------------------------------------------------------:|
-<code>RunAll<code>| Executes all the processes at the same time without respecting the order. This allows each terminated thread to work on the data without waiting for all tasks to complete.| 
-|<code>Enqueue<code>|, executes the process one by one in the order of input.|
+| Type | Behavior |
+| :---: | :--- |
+|`RunAll`| Executes all the processes at the same time without respecting the order. This allows each terminated thread to work on the data without waiting for all tasks to complete.| 
+|`Enqueue`|, executes the process one by one in the order of input.|
 
 ```csharp
 using Vaetech.Threading.Tasks;
