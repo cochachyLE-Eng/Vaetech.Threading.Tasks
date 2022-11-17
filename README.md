@@ -360,72 +360,37 @@ public static async Task SplitEventAsync2()
     */
 }
 
-public static void InitEvents() {
-    listEventHandlerGroupA_1 += (s, e) => {                
-        (int container, int lot) = e.Pack;
-
-        System.Console.WriteLine("container {0} lot {1}:", ++container, ++lot);
-
-        foreach (var i in e.List)
-        {
-            Thread.Sleep(100);
-            System.Console.WriteLine(i);
-        }
+private void InitEvents()
+{
+    listEventHandlerGroupA_1 += (s, e) =>
+    {                
+        Assert.Equal((0,0), e.Pack);
+        Assert.True(e.List.Count() == 1);
     };
-    listEventHandlerGroupA_1_1 += (s, e) => {
-        (int container, int lot) = e.Pack;
-
-        System.Console.WriteLine("container {0} lot {1}:", ++container, ++lot);
-
-        foreach (var i in e.List)
-        {
-            Thread.Sleep(100);
-            System.Console.WriteLine(i);
-        }
+    listEventHandlerGroupA_1_1 += (s, e) =>
+    {
+        Assert.Equal((0, 1), e.Pack);
+        Assert.True(e.List.Count() == 1);
     };
-    listEventHandlerGroupA_2 += (s, e) => {
-        (int container, int lot) = e.Pack;
-
-        System.Console.WriteLine("container {0} lot {1}:", ++container, ++lot);
-
-        foreach (var i in e.List)
-        {
-            Thread.Sleep(100);
-            System.Console.WriteLine(i);
-        }
+    listEventHandlerGroupA_2 += (s, e) =>
+    {
+        Assert.Equal((1, 0), e.Pack);
+        Assert.True(e.List.Count() == 2);
     };
-    listEventHandlerGroupA_3 += (s, e) => {
-        (int container, int lot) = e.Pack;
-
-        System.Console.WriteLine("container {0} lot {1}:", ++container, ++lot);
-
-        foreach (var i in e.List)
-        {
-            Thread.Sleep(100);
-            System.Console.WriteLine(i);
-        }
+    listEventHandlerGroupA_3 += (s, e) =>
+    {
+        Assert.Equal((2, 0), e.Pack);
+        Assert.True(e.List.Count() == 2);
     };
-    listEventHandlerGroupA_4 += (s, e) => {
-        (int container, int lot) = e.Pack;
-
-        System.Console.WriteLine("container {0} lot {1}:", ++container, ++lot);
-
-        foreach (var i in e.List)
-        {
-            Thread.Sleep(100);
-            System.Console.WriteLine(i);
-        }
+    listEventHandlerGroupA_4 += (s, e) =>
+    {
+        Assert.Equal((3, 0), e.Pack);
+        Assert.True(e.List.Count() == 2);
     };
-    listEventHandlerGroupA_5 += (s, e) => {
-        (int container, int lot) = e.Pack;
-
-        System.Console.WriteLine("container {0} lot {1}:", ++container, ++lot);
-
-        foreach (var i in e.List)
-        {
-            Thread.Sleep(100);
-            System.Console.WriteLine(i);
-        }
+    listEventHandlerGroupA_5 += (s, e) =>
+    {
+        Assert.Equal((4, 0), e.Pack);
+        Assert.True(e.List.Count() == 3);
     };
 }
 
