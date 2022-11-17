@@ -1,20 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Vaetech.Data.ContentResult;
+using Vaetech.Data.ContentResult.Events;
 using Parallel = Vaetech.Threading.Tasks.Parallel;
 
 namespace Vaetech.Threading.Tasks.Console
 {
+    using ListEventT = Func<Parallel.ListEvent<byte>, Task>;
     class Program
     {
+
         static void Main(string[] args)
-        {
+        {            
             System.Console.WriteLine("Hello World!");
+            SplitEventAsync1().Wait();
             //Method5();
-            SampleMethodDynamicResultOption2Async().Wait();
-            System.Console.ReadKey();
+            //SampleMethodDynamicResultOption2Async().Wait();
+            System.Console.ReadKey();             
         }                
         public static void Invoke()
         {
@@ -415,6 +420,173 @@ namespace Vaetech.Threading.Tasks.Console
                 (rq) => rq.RunAsync(() => MethodTest4_5(3), (ActionResult<string> rs) => { })
                 );
         }
+
+        #region ListEventTest
+        
+        public static async Task SplitEventAsync1()
+        {
+            int[] values = Enumerable.Range(0, 10).ToArray();                       
+
+            // It splits the List between the number of batches and sends them to new instances of the instantiated event.
+            await Parallel.SplitEventAsync(ProcessType.Enqueue, values.ToList(), lots: 3, (s, e) =>
+            {
+                (int container, int lot) = e.Pack;
+                System.Console.WriteLine("container {0} lot {1}:", ++container, ++lot);
+
+                foreach (var i in e.List)
+                {
+                    Thread.Sleep(100);
+                    System.Console.WriteLine(i);
+                }
+            });
+
+            /* Output:                 
+                container 1 lot 1:
+                0
+                1
+                2
+                container 1 lot 2:
+                3
+                4
+                5
+                container 1 lot 3:
+                6
+                7
+                8
+                9
+             */
+        }
+        public static async Task SplitEventAsync2()
+        {
+            InitEvents();
+            int[] values = Enumerable.Range(0, 10).ToArray();
+
+            // 1. It splits the list by the number of instantiated events down (Horizontal).
+            // 2. It splits the sublist by the number of instantiated events on the right (Vertical).
+            await Parallel.SplitEventAsync(ProcessType.Enqueue,values.ToList(),
+            (rq) => rq.EventAsync(() => listEventHandlerGroupA_1, () => listEventHandlerGroupA_1_1),
+            (rq) => rq.EventAsync(() => listEventHandlerGroupA_2),
+            (rq) => rq.EventAsync(() => listEventHandlerGroupA_3),
+            (rq) => rq.EventAsync(() => listEventHandlerGroupA_4),
+            (rq) => rq.EventAsync(() => listEventHandlerGroupA_5)
+            );
+
+            /* Output:            
+                container 1 lot 1:
+                0
+                container 1 lot 2:
+                1
+                container 2 lot 1:
+                2
+                3
+                container 3 lot 1:
+                4
+                5
+                container 4 lot 1:
+                6
+                7
+                container 5 lot 1:
+                8
+                9
+            */
+        }
+        public static void InitEvents() {
+            listEventHandlerGroupA_1 += (s, e) => {                
+                (int container, int lot) = e.Pack;
+
+                System.Console.WriteLine("container {0} lot {1}:", ++container, ++lot);
+
+                foreach (var i in e.List)
+                {
+                    Thread.Sleep(100);
+                    System.Console.WriteLine(i);
+                }
+            };
+            listEventHandlerGroupA_1_1 += (s, e) => {
+                (int container, int lot) = e.Pack;
+
+                System.Console.WriteLine("container {0} lot {1}:", ++container, ++lot);
+
+                foreach (var i in e.List)
+                {
+                    Thread.Sleep(100);
+                    System.Console.WriteLine(i);
+                }
+            };
+            listEventHandlerGroupA_2 += (s, e) => {
+                (int container, int lot) = e.Pack;
+
+                System.Console.WriteLine("container {0} lot {1}:", ++container, ++lot);
+
+                foreach (var i in e.List)
+                {
+                    Thread.Sleep(100);
+                    System.Console.WriteLine(i);
+                }
+            };
+            listEventHandlerGroupA_3 += (s, e) => {
+                (int container, int lot) = e.Pack;
+
+                System.Console.WriteLine("container {0} lot {1}:", ++container, ++lot);
+
+                foreach (var i in e.List)
+                {
+                    Thread.Sleep(100);
+                    System.Console.WriteLine(i);
+                }
+            };
+            listEventHandlerGroupA_4 += (s, e) => {
+                (int container, int lot) = e.Pack;
+
+                System.Console.WriteLine("container {0} lot {1}:", ++container, ++lot);
+
+                foreach (var i in e.List)
+                {
+                    Thread.Sleep(100);
+                    System.Console.WriteLine(i);
+                }
+            };
+            listEventHandlerGroupA_5 += (s, e) => {
+                (int container, int lot) = e.Pack;
+
+                System.Console.WriteLine("container {0} lot {1}:", ++container, ++lot);
+
+                foreach (var i in e.List)
+                {
+                    Thread.Sleep(100);
+                    System.Console.WriteLine(i);
+                }
+            };
+        }
+        
+        public static ListEventHandler<int> listEventHandlerGroupA_1;
+        public static ListEventHandler<int> listEventHandlerGroupA_1_1;
+        public static ListEventHandler<int> listEventHandlerGroupA_2;
+        public static ListEventHandler<int> listEventHandlerGroupA_3;
+        public static ListEventHandler<int> listEventHandlerGroupA_4;
+        public static ListEventHandler<int> listEventHandlerGroupA_5;
+        #endregion
+
+        #region TupleEventTest
+        public async Task TupleEventTest()
+        {
+            int[] values1 = Enumerable.Range(0, 1024).ToArray();
+            int[] values2 = Enumerable.Range(0, 1024).ToArray();
+
+            await Parallel.WorkerAsync(values1.ToList(), values2.ToList(),
+                (rq) => rq.TupleEventAsync(() => (tupleEventHandlerGroupA_1, tupleEventHandlerGroupA_2), () => (tupleEventHandlerGroupA_1, tupleEventHandlerGroupA_2))
+                );
+
+            await Parallel.WorkerAsync(values1.ToList(), values2.ToList(),
+                (rq) => rq.TupleEventAsync2((() => tupleEventHandlerGroupA_1, () => tupleEventHandlerGroupA_2), (() => tupleEventHandlerGroupA_1, () => tupleEventHandlerGroupA_2)),
+                (rq) => rq.TupleEventAsync2((() => tupleEventHandlerGroupB_1, () => tupleEventHandlerGroupB_2))
+                );
+        }
+        public TupleEventHandler<List<int>> tupleEventHandlerGroupA_1;
+        public TupleEventHandler<List<int>> tupleEventHandlerGroupA_2;
+        public TupleEventHandler<List<int>> tupleEventHandlerGroupB_1;
+        public TupleEventHandler<List<int>> tupleEventHandlerGroupB_2;
+        #endregion
         public class DemoClass
         {
             public string data { get; set; }
