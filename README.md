@@ -6,6 +6,12 @@
 |:--------------|:------------:|
 |**Vaetech.Threading.Tasks**    |[![NuGet Badge Vaetech.Threading.Tasks](https://buildstats.info/nuget/Vaetech.Threading.Tasks)](https://www.nuget.org/packages/Vaetech.Threading.Tasks)
 
+|   Platform   |Build Status|
+|:-------------|:----------:|
+|**Windows**   |[![dotnet](https://github.com/cochachyLE-Eng/Vaetech.Threading.Tasks/actions/workflows/dotnet.yml/badge.svg)](https://github.com/cochachyLE-Eng/Vaetech.Threading.Tasks/actions/workflows/dotnet.yml)|
+|**Linux**     |[![dotnet](https://github.com/cochachyLE-Eng/Vaetech.Threading.Tasks/actions/workflows/dotnet.yml/badge.svg)](https://github.com/cochachyLE-Eng/Vaetech.Threading.Tasks/actions/workflows/dotnet.yml)|
+|**MacOS**     |[![dotnet](https://github.com/cochachyLE-Eng/Vaetech.Threading.Tasks/actions/workflows/dotnet.yml/badge.svg)](https://github.com/cochachyLE-Eng/Vaetech.Threading.Tasks/actions/workflows/dotnet.yml)|
+
 
 ## What is Vaetech.Threading.Tasks?
 
