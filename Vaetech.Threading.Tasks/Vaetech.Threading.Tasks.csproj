@@ -12,7 +12,7 @@
     <PackageIconUrl />
     <PackageProjectUrl>https://github.com/cochachyLE-Eng/Vaetech.Threading.Tasks</PackageProjectUrl>
     <RepositoryUrl>https://github.com/cochachyLE-Eng/Vaetech.Threading.Tasks</RepositoryUrl>
-    <Version>1.8.8</Version>
+    <Version>1.8.8.1</Version>
     <AssemblyName>Vaetech.Threading.Tasks</AssemblyName>
     <RootNamespace>Vaetech.Threading.Tasks</RootNamespace>
   </PropertyGroup>

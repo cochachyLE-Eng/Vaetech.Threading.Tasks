@@ -18,7 +18,7 @@ namespace Vaetech.Threading.Tasks
         public static async Task SplitEventAsync<T, T1, T2, T3, T4>(ProcessType typeProcess, List<T> data, T1 item1, T2 item2, T3 item3, T4 item4, params Func<ListEvent<T, T1, T2, T3, T4>, Task>[] actions)
         {
             if (!data.Any()) return;
-            int i = 0, co = -1, lots = actions.Count(), c = count(data.Count, ref lots);
+            int i = 0, co = 0, lots = actions.Count(), c = count(data.Count, ref lots);
 
             List<Task> tasks = new List<Task>();
             foreach (Func<ListEvent<T, T1, T2, T3, T4>, Task> action in actions)
@@ -27,11 +27,11 @@ namespace Vaetech.Threading.Tasks
                 switch (typeProcess)
                 {
                     case ProcessType.Enqueue:
-                        await action.Invoke(new ListEvent<T, T1, T2, T3, T4>(typeProcess, data.GetRange(c * i++, c + re), item1, item2, item3, item4, container: co));
+                        await action.Invoke(new ListEvent<T, T1, T2, T3, T4>(typeProcess, data.GetRange(c * i++, c + re), item1, item2, item3, item4, container: co - 1));
                         break;
                     case ProcessType.RunAll:
                     default:
-                        tasks.Add(action(new ListEvent<T, T1, T2, T3, T4>(typeProcess, data.GetRange(c * i++, c + re), item1, item2, item3, item4, container: co)));
+                        tasks.Add(action(new ListEvent<T, T1, T2, T3, T4>(typeProcess, data.GetRange(c * i++, c + re), item1, item2, item3, item4, container: co - 1)));
                         break;
                 }
             }

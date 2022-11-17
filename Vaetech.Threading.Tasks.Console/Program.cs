@@ -14,9 +14,8 @@ namespace Vaetech.Threading.Tasks.Console
     {
 
         static void Main(string[] args)
-        {            
-            System.Console.WriteLine("Hello World!");
-            SplitEventAsync1().Wait();
+        {                        
+            SplitEventAsync2().Wait();
             //Method5();
             //SampleMethodDynamicResultOption2Async().Wait();
             System.Console.ReadKey();             
@@ -459,7 +458,7 @@ namespace Vaetech.Threading.Tasks.Console
         public static async Task SplitEventAsync2()
         {
             InitEvents();
-            int[] values = Enumerable.Range(0, 10).ToArray();
+            int[] values = Enumerable.Range(0, 11).ToArray();
 
             // 1. It splits the list by the number of instantiated events down (Horizontal).
             // 2. It splits the sublist by the number of instantiated events on the right (Vertical).
