@@ -1,0 +1,16 @@
+name: dotnet
+on: push
+
+jobs:
+  test:      
+      strategy:
+        matrix:
+          os: [ubuntu-latest, windows-latest, macOS-latest]
+          dotnet-version: ['2.1.x', '3.1.x']
+      name: Test on dotnet ${{ matrix.dotnet-version }} and ${{ matrix.os }}
+      runs-on: ${{ matrix.os }}
+      steps:
+        - uses: actions/checkout@v1
+        - name: Script        
+          run: ./build.ps1
+          shell: pwsh
