@@ -14,8 +14,8 @@ namespace Vaetech.Threading.Tasks.Console
     {
 
         static void Main(string[] args)
-        {                        
-            SplitEventAsync2().Wait();
+        {            
+            SplitAsync1().Wait();            
             //Method5();
             //SampleMethodDynamicResultOption2Async().Wait();
             System.Console.ReadKey();             
@@ -422,19 +422,19 @@ namespace Vaetech.Threading.Tasks.Console
 
         #region ListEventTest
         
-        public static async Task SplitEventAsync1()
-        {
+        public static async Task SplitAsync1()
+        {            
             int[] values = Enumerable.Range(0, 10).ToArray();                       
 
             // It splits the List between the number of batches and sends them to new instances of the instantiated event.
-            await Parallel.SplitEventAsync(ProcessType.Enqueue, values.ToList(), lots: 3, (s, e) =>
+            await Parallel.SplitAsync(ProcessType.Enqueue, values.ToList(), lots: 3, (s, e) =>
             {
                 (int container, int lot) = e.Pack;
                 System.Console.WriteLine("container {0} lot {1}:", ++container, ++lot);
 
                 foreach (var i in e.List)
                 {
-                    Thread.Sleep(100);
+                    Thread.Sleep(10);
                     System.Console.WriteLine(i);
                 }
             });
@@ -455,14 +455,14 @@ namespace Vaetech.Threading.Tasks.Console
                 9
              */
         }
-        public static async Task SplitEventAsync2()
+        public static async Task SplitAsync2()
         {
             InitEvents();
-            int[] values = Enumerable.Range(0, 11).ToArray();
+            int[] values = Enumerable.Range(0, 10).ToArray();
 
             // 1. It splits the list by the number of instantiated events down (Horizontal).
             // 2. It splits the sublist by the number of instantiated events on the right (Vertical).
-            await Parallel.SplitEventAsync(ProcessType.Enqueue,values.ToList(),
+            await Parallel.SplitAsync(ProcessType.Enqueue,values.ToList(),
             (rq) => rq.EventAsync(() => listEventHandlerGroupA_1, () => listEventHandlerGroupA_1_1),
             (rq) => rq.EventAsync(() => listEventHandlerGroupA_2),
             (rq) => rq.EventAsync(() => listEventHandlerGroupA_3),
@@ -489,6 +489,72 @@ namespace Vaetech.Threading.Tasks.Console
                 9
             */
         }
+        public static async Task SplitAsync3()
+        {
+            InitEvents();
+            int[] values = Enumerable.Range(0, 16).ToArray();
+
+            // 1. It splits the list by the number of instantiated events down (Horizontal).
+            // 2. It splits the sublist by the number of instantiated events on the right (Vertical).
+            await Parallel.SplitAsync(ProcessType.Enqueue, values.ToList(),
+            (rq) => rq.EventAsync(() => listEventHandlerGroupA_1, () => listEventHandlerGroupA_1_1),
+            (rq) => rq.EventAsync(() => listEventHandlerGroupA_2),
+            (rq) => rq.EventAsync(() => listEventHandlerGroupA_3),
+            (rq) => rq.EventAsync(() => listEventHandlerGroupA_4),
+            (rq) => rq.EventAsync(() => listEventHandlerGroupA_5)
+            );
+
+            /* Output:            
+                container 1 lot 1:
+                0
+                container 1 lot 2:
+                1
+                2
+                container 2 lot 1:
+                3
+                4
+                5
+                container 3 lot 1:
+                6
+                7
+                8
+                container 4 lot 1:
+                9
+                10
+                11
+                container 5 lot 1:
+                12
+                13
+                14
+                15
+            */
+        }
+        public static async Task SplitAsync4()
+        {
+            InitEvents();
+            int[] values = Enumerable.Range(0, 4).ToArray();
+
+            // 1. It splits the list by the number of instantiated events down (Horizontal).
+            // 2. It splits the sublist by the number of instantiated events on the right (Vertical).
+            await Parallel.SplitAsync(ProcessType.Enqueue, values.ToList(),
+            (rq) => rq.EventAsync(() => listEventHandlerGroupA_1, () => listEventHandlerGroupA_1_1),
+            (rq) => rq.EventAsync(() => listEventHandlerGroupA_2),
+            (rq) => rq.EventAsync(() => listEventHandlerGroupA_3),
+            (rq) => rq.EventAsync(() => listEventHandlerGroupA_4),
+            (rq) => rq.EventAsync(() => listEventHandlerGroupA_5)
+            );
+
+            /* Output:            
+                container 1 lot 1:
+                0
+                container 2 lot 1:
+                1
+                container 3 lot 1:
+                2
+                container 4 lot 1:
+                3
+            */
+        }
         public static void InitEvents() {
             listEventHandlerGroupA_1 += (s, e) => {                
                 (int container, int lot) = e.Pack;
@@ -497,7 +563,7 @@ namespace Vaetech.Threading.Tasks.Console
 
                 foreach (var i in e.List)
                 {
-                    Thread.Sleep(100);
+                    Thread.Sleep(10);
                     System.Console.WriteLine(i);
                 }
             };
@@ -508,7 +574,7 @@ namespace Vaetech.Threading.Tasks.Console
 
                 foreach (var i in e.List)
                 {
-                    Thread.Sleep(100);
+                    Thread.Sleep(10);
                     System.Console.WriteLine(i);
                 }
             };
@@ -519,7 +585,7 @@ namespace Vaetech.Threading.Tasks.Console
 
                 foreach (var i in e.List)
                 {
-                    Thread.Sleep(100);
+                    Thread.Sleep(10);
                     System.Console.WriteLine(i);
                 }
             };
@@ -530,7 +596,7 @@ namespace Vaetech.Threading.Tasks.Console
 
                 foreach (var i in e.List)
                 {
-                    Thread.Sleep(100);
+                    Thread.Sleep(10);
                     System.Console.WriteLine(i);
                 }
             };
@@ -541,7 +607,7 @@ namespace Vaetech.Threading.Tasks.Console
 
                 foreach (var i in e.List)
                 {
-                    Thread.Sleep(100);
+                    Thread.Sleep(10);
                     System.Console.WriteLine(i);
                 }
             };
@@ -552,7 +618,7 @@ namespace Vaetech.Threading.Tasks.Console
 
                 foreach (var i in e.List)
                 {
-                    Thread.Sleep(100);
+                    Thread.Sleep(10);
                     System.Console.WriteLine(i);
                 }
             };

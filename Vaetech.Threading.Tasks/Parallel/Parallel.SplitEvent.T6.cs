@@ -12,32 +12,30 @@ namespace Vaetech.Threading.Tasks
 {
     public partial class Parallel
     {
-        #region WorkerAsync - Func<ListEvent<T, T1, T2, T3, T4, T5, T6>, Task>[]
-        public static async Task SplitEventAsync<T, T1, T2, T3, T4, T5, T6>(List<T> data, T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6, params Func<ListEvent<T, T1, T2, T3, T4, T5, T6>, Task>[] actions)
-            => await SplitEventAsync<T, T1, T2, T3, T4, T5, T6>(ProcessType.Default, data, item1, item2, item3, item4, item5, item6, actions);
-        public static async Task SplitEventAsync<T, T1, T2, T3, T4, T5, T6>(ProcessType typeProcess, List<T> data, T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6, params Func<ListEvent<T, T1, T2, T3, T4, T5, T6>, Task>[] actions)
+        #region SplitAsync - Func<ListEvent<T, T1, T2, T3, T4, T5, T6>, Task>[]
+        public static async Task SplitAsync<T, T1, T2, T3, T4, T5, T6>(List<T> data, T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6, params Func<ListEvent<T, T1, T2, T3, T4, T5, T6>, Task>[] funcs)
+            => await SplitAsync<T, T1, T2, T3, T4, T5, T6>(ProcessType.Default, data, item1, item2, item3, item4, item5, item6, funcs);
+        public static async Task SplitAsync<T, T1, T2, T3, T4, T5, T6>(ProcessType processType, List<T> data, T1 item1, T2 item2, T3 item3, T4 item4, T5 item5, T6 item6, params Func<ListEvent<T, T1, T2, T3, T4, T5, T6>, Task>[] funcs)
         {
             if (!data.Any()) return;
-            int i = 0, co = 0, lots = actions.Count(), c = count(data.Count, ref lots);
+            int i = 0, co = -1, lots = funcs.Count(), c = Count(data.Count, ref lots);
 
             List<Task> tasks = new List<Task>();
-            foreach (Func<ListEvent<T, T1, T2, T3, T4, T5, T6>, Task> action in actions)
+            foreach (Func<ListEvent<T, T1, T2, T3, T4, T5, T6>, Task> fn in funcs.Take(c * lots))
             {
-                int re = (++co == actions.Count() ? data.Count % lots : 0);
-                switch (typeProcess)
+                int re = ++co == lots -1 ? data.Count % lots : 0;
+                switch (processType)
                 {
                     case ProcessType.Enqueue:
-                        await action.Invoke(new ListEvent<T, T1, T2, T3, T4, T5, T6>(typeProcess, data.GetRange(c * i++, c + re), item1, item2, item3, item4, item5, item6, container: co - 1));
+                        await fn.Invoke(new ListEvent<T, T1, T2, T3, T4, T5, T6>(processType, data.GetRange(c * i++, c + re), item1, item2, item3, item4, item5, item6, container: co));
                         break;
                     case ProcessType.RunAll:
                     default:
-                        tasks.Add(action(new ListEvent<T, T1, T2, T3, T4, T5, T6>(typeProcess, data.GetRange(c * i++, c + re), item1, item2, item3, item4, item5, item6, container: co - 1)));
+                        tasks.Add(fn(new ListEvent<T, T1, T2, T3, T4, T5, T6>(processType, data.GetRange(c * i++, c + re), item1, item2, item3, item4, item5, item6, container: co)));
                         break;
                 }
             }
-
-            if (tasks.Any())
-                await Task.WhenAll(tasks);
+            await Task.WhenAll(tasks);
         }
         #endregion
         public class ListEvent<T, T1, T2, T3, T4, T5, T6>
@@ -58,14 +56,13 @@ namespace Vaetech.Threading.Tasks
             public async Task EventAsync(params Func<ListEventHandler<T, T1, T2, T3, T4, T5, T6>>[] events)
             {
                 if (!events.Any()) return;
-                int i = 0, l = -1, lots = events.Count(), c = count(_data.Count, ref lots);
+                int i = 0, l = -1, lots = events.Count(), c = Count(_data.Count, ref lots);
 
                 List<Task> tasks = new List<Task>();
-
-                foreach (Func<ListEventHandler<T, T1, T2, T3, T4, T5, T6>> ev in events)
+                foreach (Func<ListEventHandler<T, T1, T2, T3, T4, T5, T6>> fn in events.Take(c * lots))
                 {
-                    ListEventHandler<T, T1, T2, T3, T4, T5, T6> handler = ev.Invoke();
-                    int re = (++l == events.Count() ? _data.Count % lots : 0);
+                    ListEventHandler<T, T1, T2, T3, T4, T5, T6> handler = fn.Invoke();
+                    int re = ++l == lots -1 ? _data.Count % lots : 0;
 
                     switch (_processType)
                     {
@@ -78,9 +75,7 @@ namespace Vaetech.Threading.Tasks
                             break;
                     }
                 }
-
-                if (tasks.Any())
-                    await Task.WhenAll(tasks);
+                await Task.WhenAll(tasks);
             }
             #endregion
         }

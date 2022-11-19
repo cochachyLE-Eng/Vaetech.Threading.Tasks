@@ -11,12 +11,12 @@ namespace Vaetech.Threading.Tasks.Test
     {
         #region ListEventTest
         [Fact]
-        public async Task SplitEventAsync1()
+        public async Task SplitAsync1()
         {
             int[] values = Enumerable.Range(0, 10).ToArray();
 
             // It splits the List between the number of batches and sends them to new instances of the instantiated event.
-            await Parallel.SplitEventAsync(ProcessType.Enqueue, values.ToList(), lots: 3, (s, e) =>
+            await Parallel.SplitAsync(ProcessType.Enqueue, values.ToList(), lots: 3, (s, e) =>
             {
                 (int container, int lot) = e.Pack;
                 Console.WriteLine("container {0} lot {1}:", ++container, ++lot);
@@ -53,14 +53,14 @@ namespace Vaetech.Threading.Tasks.Test
         }
 
         [Fact]
-        public async Task SplitEventAsync2()
+        public async Task SplitAsync2()
         {
             InitEvents();
             int[] values = Enumerable.Range(0, 11).ToArray();
 
             // 1. It splits the list by the number of instantiated events down (Horizontal).
             // 2. It splits the sublist by the number of instantiated events on the right (Vertical).
-            await Parallel.SplitEventAsync(ProcessType.Enqueue, values.ToList(),
+            await Parallel.SplitAsync(ProcessType.Enqueue, values.ToList(),
             (rq) => rq.EventAsync(() => listEventHandlerGroupA_1, () => listEventHandlerGroupA_1_1),
             (rq) => rq.EventAsync(() => listEventHandlerGroupA_2),
             (rq) => rq.EventAsync(() => listEventHandlerGroupA_3),
