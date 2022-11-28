@@ -10,8 +10,12 @@
         /// <summary>
         /// Run in order of entry.
         /// </summary>
-        Enqueue
-    }
+        RunInOrder = 1,
+        /// <summary>
+        /// Add process enqueue.
+        /// </summary>
+        // Enqueue
+    }    
     public enum Processors
     {
         None = 0,

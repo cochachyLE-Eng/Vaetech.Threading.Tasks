@@ -17,7 +17,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.Enqueue:
+                case ProcessType.RunInOrder:
                     {
                         foreach (Action action in actions)
                             Task.Run(() => Invoke(action)).Wait();
@@ -57,7 +57,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.Enqueue:
+                case ProcessType.RunInOrder:
                     {
                         foreach (Func<Task> action in actions)
                             await InvokeAsync(action);
@@ -99,7 +99,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.Enqueue:
+                case ProcessType.RunInOrder:
                     {
                         foreach (Func<TaskLocal, Task> action in actions)
                            await action(new TaskLocal());

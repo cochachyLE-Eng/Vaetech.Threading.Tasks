@@ -103,7 +103,7 @@ There are two types of processes <code>RunAll</code> and <code>Enqueue</code>. T
 | Type | Behavior |
 | :---: | :--- |
 |`RunAll`| Executes all the processes at the same time without respecting the order. This allows each terminated thread to work on the data without waiting for all tasks to complete.| 
-|`Enqueue`| Executes the process one by one in the order of input. This allows threads to be debugged in order of entry.|
+|`RunInOrder`| Executes the process one by one in the order of input. This allows threads to be debugged in order of entry.|
 
 ```csharp
 using Vaetech.Threading.Tasks;
@@ -141,7 +141,7 @@ using Parallel = Vaetech.Threading.Tasks.Parallel;
 // Run all processes in order of entry.
 public static void InvokeAndRunInOrder()
 {    
-    Parallel.Invoke(ProcessType.Enqueue,
+    Parallel.Invoke(ProcessType.RunInOrder,
         () => SampleMethod("[2] Process 5"),
         () => SampleMethod("[2] Process 4"),
         () => SampleMethod("[2] Process 3"),
@@ -200,7 +200,7 @@ using Parallel = Vaetech.Threading.Tasks.Parallel;
 // Run all methods in order of entry (Async)
 public static async Task InvokeAndRunInOrderAsync()
 {    
-    await Parallel.InvokeAsync(ProcessType.Enqueue,
+    await Parallel.InvokeAsync(ProcessType.RunInOrder,
         () => SampleMethodAsync("[2] Process 5"),
         () => SampleMethodAsync("[2] Process 4"),
         () => SampleMethodAsync("[2] Process 3"),
@@ -297,7 +297,7 @@ public static async Task SplitAsync1()
     int[] values = Enumerable.Range(0, 10).ToArray();                       
 
     // It splits the List between the number of batches and sends them to new instances of the instantiated event.
-    await Parallel.SplitAsync(ProcessType.Enqueue, values.ToList(), lots: 3, (s, e) =>
+    await Parallel.SplitAsync(ProcessType.RunInOrder, values.ToList(), lots: 3, (s, e) =>
     {
         (int container, int lot) = e.Pack;
         System.Console.WriteLine("container {0} lot {1}:", ++container, ++lot);
@@ -334,11 +334,11 @@ public static async Task SplitAsync1()
 public static async Task SplitAsync2()
 {
     InitEvents();
-    int[] values = Enumerable.Range(0, 10).ToArray();
+    int[] values = Enumerable.Range(0, 11).ToArray();
 
     // 1. It splits the list by the number of instantiated events down (Horizontal).
     // 2. It splits the sublist by the number of instantiated events on the right (Vertical).
-    await Parallel.SplitAsync(ProcessType.Enqueue,values.ToList(),
+    await Parallel.SplitAsync(ProcessType.RunInOrder,values.ToList(),
     (rq) => rq.EventAsync(() => listEventHandlerGroupA_1, () => listEventHandlerGroupA_1_1),
     (rq) => rq.EventAsync(() => listEventHandlerGroupA_2),
     (rq) => rq.EventAsync(() => listEventHandlerGroupA_3),
@@ -363,6 +363,7 @@ public static async Task SplitAsync2()
         container 5 lot 1:
         8
         9
+        10
     */
 }
 
@@ -373,7 +374,7 @@ public static async Task SplitAsync3()
 
     // 1. It splits the list by the number of instantiated events down (Horizontal).
     // 2. It splits the sublist by the number of instantiated events on the right (Vertical).
-    await Parallel.SplitAsync(ProcessType.Enqueue, values.ToList(),
+    await Parallel.SplitAsync(ProcessType.RunInOrder, values.ToList(),
     (rq) => rq.EventAsync(() => listEventHandlerGroupA_1, () => listEventHandlerGroupA_1_1),
     (rq) => rq.EventAsync(() => listEventHandlerGroupA_2),
     (rq) => rq.EventAsync(() => listEventHandlerGroupA_3),
@@ -413,7 +414,7 @@ public static async Task SplitAsync4()
 
     // 1. It splits the list by the number of instantiated events down (Horizontal).
     // 2. It splits the sublist by the number of instantiated events on the right (Vertical).
-    await Parallel.SplitAsync(ProcessType.Enqueue, values.ToList(),
+    await Parallel.SplitAsync(ProcessType.RunInOrder, values.ToList(),
     (rq) => rq.EventAsync(() => listEventHandlerGroupA_1, () => listEventHandlerGroupA_1_1),
     (rq) => rq.EventAsync(() => listEventHandlerGroupA_2),
     (rq) => rq.EventAsync(() => listEventHandlerGroupA_3),

@@ -14,8 +14,8 @@ namespace Vaetech.Threading.Tasks.Console
     {
 
         static void Main(string[] args)
-        {            
-            SplitAsync1().Wait();            
+        {
+            SplitAsync2().Wait();            
             //Method5();
             //SampleMethodDynamicResultOption2Async().Wait();
             System.Console.ReadKey();             
@@ -51,7 +51,7 @@ namespace Vaetech.Threading.Tasks.Console
             System.Console.WriteLine("Run RunInOrder [2] - Asynchronous");
             System.Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
-            Parallel.Invoke(ProcessType.Enqueue,
+            Parallel.Invoke(ProcessType.RunInOrder,
                 () => SampleMethod("[2] Process 5"),
                 () => SampleMethod("[2] Process 4"),
                 () => SampleMethod("[2] Process 3"), 
@@ -85,7 +85,7 @@ namespace Vaetech.Threading.Tasks.Console
             System.Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             System.Console.WriteLine("Run RunInOrder [2] - Asynchronous");
             System.Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            await Parallel.InvokeAsync(ProcessType.Enqueue,
+            await Parallel.InvokeAsync(ProcessType.RunInOrder,
                 () => SampleMethodAsync("[2] Process 5"),
                 () => SampleMethodAsync("[2] Process 4"),
                 () => SampleMethodAsync("[2] Process 3"),
@@ -198,7 +198,7 @@ namespace Vaetech.Threading.Tasks.Console
             System.Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             System.Console.WriteLine("Run RunInOrder [4]");
             System.Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            Parallel.Invoke(ProcessType.Enqueue,
+            Parallel.Invoke(ProcessType.RunInOrder,
                 () => SampleMethod("[4] method5"),
                 () => SampleMethod("[4] method4"),
                 () => SampleMethod("[4] method3"),
@@ -232,7 +232,7 @@ namespace Vaetech.Threading.Tasks.Console
                 (rq) => rq.RunAsync(() => SampleMethodWithResultAsync("4", 200), (ActionResult a) => { var value = (DateTime[])a.Data; })
                 );
             
-            await Parallel.InvokeAsync(ProcessType.Enqueue,
+            await Parallel.InvokeAsync(ProcessType.RunInOrder,
                (rq) => rq.RunAsync(() => Method6("123", 2000), async (ActionResult a) =>
                {
                    System.Console.WriteLine("-> end [1] {0} {1}", a.Data, DateTime.Now.ToString("hh:mm:ss ffff"));
@@ -382,7 +382,7 @@ namespace Vaetech.Threading.Tasks.Console
         }
         public async Task MethodTestEx()
         {            
-            await Parallel.InvokeAsync(ProcessType.Enqueue,
+            await Parallel.InvokeAsync(ProcessType.RunInOrder,
                 (rq) => rq.RunAsync(() => MethodTestString(3), (ActionResult<string> rs) => { }),
                 (rq) => rq.RunAsync(() => MethodTest4(3), (ActionResult<int> rs) => { }),
                 (rq) => rq.RunAsync(() => MethodTest4(3), (ActionResult<int> rs) => { }),
@@ -392,7 +392,7 @@ namespace Vaetech.Threading.Tasks.Console
         }
         public async Task MethodTest()
         {
-            await Parallel.InvokeAsync(ProcessType.Enqueue,
+            await Parallel.InvokeAsync(ProcessType.RunInOrder,
                 (rq) => rq.RunAsync(() => MethodTestString(3), (ActionResult<string> rs) => { }),
                 (rq) => rq.RunAsync(() => MethodTest4(3), (ActionResult<int> rs) => { }),
                 (rq) => rq.RunAsync(() => MethodTest4(3), (ActionResult<int> rs) => { }),
@@ -400,17 +400,17 @@ namespace Vaetech.Threading.Tasks.Console
                 (rq) => rq.RunAsync(() => MethodTest4_1(3), (ActionResult<int> rs) => { })
                 );
 
-            await Parallel.InvokeAsync(ProcessType.Enqueue,
+            await Parallel.InvokeAsync(ProcessType.RunInOrder,
                 (rq) => rq.RunAsync(() => MethodTestString1(3), (ActionResult<string> rs) => { }),
                 (rq) => rq.RunAsync(() => MethodTest4_1(3), (ActionResult<int> rs) => { }),
                 (rq) => rq.RunAsync(() => MethodTest4_1(3), (ActionResult<int> rs) => { })
                 );            
 
-            await Parallel.InvokeAsync(ProcessType.Enqueue, (rq) => rq.RunAsync<DemoClass>(() => MethodTest4_2(3), (ActionResult<DemoClass> a) => { }));
-            await Parallel.InvokeAsync(ProcessType.Enqueue, (rq) => rq.RunAsync<int>(() => MethodTest4_1(3), (ActionResult<int> a) => { }));
-            await Parallel.InvokeAsync(ProcessType.Enqueue, (rq) => rq.RunAsync(() => MethodTest4(3), (ActionResult<int> a) => { }));                       
+            await Parallel.InvokeAsync(ProcessType.RunInOrder, (rq) => rq.RunAsync<DemoClass>(() => MethodTest4_2(3), (ActionResult<DemoClass> a) => { }));
+            await Parallel.InvokeAsync(ProcessType.RunInOrder, (rq) => rq.RunAsync<int>(() => MethodTest4_1(3), (ActionResult<int> a) => { }));
+            await Parallel.InvokeAsync(ProcessType.RunInOrder, (rq) => rq.RunAsync(() => MethodTest4(3), (ActionResult<int> a) => { }));                       
 
-            await Parallel.InvokeAsync(ProcessType.Enqueue,
+            await Parallel.InvokeAsync(ProcessType.RunInOrder,
                 (rq) => rq.RunAsync<DemoClass>(() => MethodTest4_2(3), (ActionResult<DemoClass> rs) => { }),
                 (rq) => rq.RunAsync<int>(() => MethodTest4_1(3), (ActionResult<int> rs) => { }),
                 (rq) => rq.RunAsync(() => MethodTest4(3), (ActionResult<int> rs) => { }),
@@ -427,7 +427,7 @@ namespace Vaetech.Threading.Tasks.Console
             int[] values = Enumerable.Range(0, 10).ToArray();                       
 
             // It splits the List between the number of batches and sends them to new instances of the instantiated event.
-            await Parallel.SplitAsync(ProcessType.Enqueue, values.ToList(), lots: 3, (s, e) =>
+            await Parallel.SplitAsync(ProcessType.RunInOrder, values.ToList(), lots: 3, (s, e) =>
             {
                 (int container, int lot) = e.Pack;
                 System.Console.WriteLine("container {0} lot {1}:", ++container, ++lot);
@@ -458,11 +458,11 @@ namespace Vaetech.Threading.Tasks.Console
         public static async Task SplitAsync2()
         {
             InitEvents();
-            int[] values = Enumerable.Range(0, 10).ToArray();
+            int[] values = Enumerable.Range(0, 11).ToArray();
 
             // 1. It splits the list by the number of instantiated events down (Horizontal).
             // 2. It splits the sublist by the number of instantiated events on the right (Vertical).
-            await Parallel.SplitAsync(ProcessType.Enqueue,values.ToList(),
+            await Parallel.SplitAsync(ProcessType.RunInOrder,values.ToList(),
             (rq) => rq.EventAsync(() => listEventHandlerGroupA_1, () => listEventHandlerGroupA_1_1),
             (rq) => rq.EventAsync(() => listEventHandlerGroupA_2),
             (rq) => rq.EventAsync(() => listEventHandlerGroupA_3),
@@ -487,6 +487,7 @@ namespace Vaetech.Threading.Tasks.Console
                 container 5 lot 1:
                 8
                 9
+                10
             */
         }
         public static async Task SplitAsync3()
@@ -496,7 +497,7 @@ namespace Vaetech.Threading.Tasks.Console
 
             // 1. It splits the list by the number of instantiated events down (Horizontal).
             // 2. It splits the sublist by the number of instantiated events on the right (Vertical).
-            await Parallel.SplitAsync(ProcessType.Enqueue, values.ToList(),
+            await Parallel.SplitAsync(ProcessType.RunInOrder, values.ToList(),
             (rq) => rq.EventAsync(() => listEventHandlerGroupA_1, () => listEventHandlerGroupA_1_1),
             (rq) => rq.EventAsync(() => listEventHandlerGroupA_2),
             (rq) => rq.EventAsync(() => listEventHandlerGroupA_3),
@@ -536,7 +537,7 @@ namespace Vaetech.Threading.Tasks.Console
 
             // 1. It splits the list by the number of instantiated events down (Horizontal).
             // 2. It splits the sublist by the number of instantiated events on the right (Vertical).
-            await Parallel.SplitAsync(ProcessType.Enqueue, values.ToList(),
+            await Parallel.SplitAsync(ProcessType.RunInOrder, values.ToList(),
             (rq) => rq.EventAsync(() => listEventHandlerGroupA_1, () => listEventHandlerGroupA_1_1),
             (rq) => rq.EventAsync(() => listEventHandlerGroupA_2),
             (rq) => rq.EventAsync(() => listEventHandlerGroupA_3),

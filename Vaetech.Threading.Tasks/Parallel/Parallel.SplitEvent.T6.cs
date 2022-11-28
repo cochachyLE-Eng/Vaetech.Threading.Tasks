@@ -26,7 +26,7 @@ namespace Vaetech.Threading.Tasks
                 int re = ++co == lots -1 ? data.Count % lots : 0;
                 switch (processType)
                 {
-                    case ProcessType.Enqueue:
+                    case ProcessType.RunInOrder:
                         await fn.Invoke(new ListEvent<T, T1, T2, T3, T4, T5, T6>(processType, data.GetRange(c * i++, c + re), item1, item2, item3, item4, item5, item6, container: co));
                         break;
                     case ProcessType.RunAll:
@@ -66,7 +66,7 @@ namespace Vaetech.Threading.Tasks
 
                     switch (_processType)
                     {
-                        case ProcessType.Enqueue:
+                        case ProcessType.RunInOrder:
                             await Task.Run(() => handler?.Invoke(null, new ListEventArgs<T, T1, T2, T3, T4, T5, T6>(_data.GetRange(c * i++, c + re), _item1, _item2, _item3, _item4, _item5, _item6, pack: (_container, l))));
                             break;
                         case ProcessType.RunAll:

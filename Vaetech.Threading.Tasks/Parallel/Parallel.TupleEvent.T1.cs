@@ -15,7 +15,7 @@ namespace Vaetech.Threading.Tasks
         {
             switch (typeProcess)
             {
-                case ProcessType.Enqueue:
+                case ProcessType.RunInOrder:
                     {
                         foreach (Func<TupleEvent<T1, T2>, Task> action in actions)
                             await action(new TupleEvent<T1, T2>(typeProcess, data1, data2));
@@ -53,7 +53,7 @@ namespace Vaetech.Threading.Tasks
 
                 switch (_processType)
                 {
-                    case ProcessType.Enqueue:
+                    case ProcessType.RunInOrder:
                         await Task.WhenAll(events.Select(el => {
                             var func = el.Invoke();
                             return Task.Run(() => (func.e1, func.e2) = ((s, e) => e = new TupleEventArgs<List<T1>>(_data1?.GetRange(count1 * i1++, count1)), (s, e) => e = new TupleEventArgs<List<T2>>(_data2?.GetRange(count2 * i2++, count2))));
@@ -78,7 +78,7 @@ namespace Vaetech.Threading.Tasks
                 
                 switch (_processType)
                 {
-                    case ProcessType.Enqueue:
+                    case ProcessType.RunInOrder:
                         await Task.WhenAll(events.Select(el => Task.Run(() => (el.e1, el.e2) = (() => (s, e) => e = new TupleEventArgs<List<T1>>(_data1?.GetRange(count1 * i1++, count1)), () => (s, e) => e = new TupleEventArgs<List<T2>>(_data2?.GetRange(count2 * i2++, count2))))));
                         break;
                     case ProcessType.RunAll:
