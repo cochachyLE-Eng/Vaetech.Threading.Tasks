@@ -57,9 +57,7 @@ namespace Vaetech.Threading.Tasks
 
                 switch (typeProcess)
                 {
-                    case ProcessType.RunInOrder:
-                        T[] data1 = default;
-                        await Task.Run(() => handler?.Invoke(null, new ListEventArgs<T>(data1, pack: (0, l))));
+                    case ProcessType.RunInOrder:                        
                         await Task.Run(() => handler?.Invoke(null, new ListEventArgs<T>(data.GetRange(c * i++, c + re), pack: (0,l))));
                         break;
                     case ProcessType.RunAll:

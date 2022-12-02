@@ -85,6 +85,7 @@ namespace Vaetech.Threading.Tasks.Test
                 container 5 lot 1:
                 8
                 9
+                10
             */
         }
         private void InitEvents()

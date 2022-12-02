@@ -15,7 +15,7 @@ namespace Vaetech.Threading.Tasks.Console
 
         static void Main(string[] args)
         {
-            SplitAsync2().Wait();            
+            SplitAsync1().Wait();            
             //Method5();
             //SampleMethodDynamicResultOption2Async().Wait();
             System.Console.ReadKey();             
