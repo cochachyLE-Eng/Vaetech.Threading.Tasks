@@ -10,9 +10,9 @@
 
 |   Platform   |Build Status|
 |:-------------|:----------:|
-|**Windows**   |[![dotnet](https://github.com/cochachyLE-Eng/Vaetech.Threading.Tasks/actions/workflows/dotnet.yml/badge.svg)](https://github.com/cochachyLE-Eng/Vaetech.Threading.Tasks/actions/workflows/dotnet.yml)|
-|**Linux**     |[![dotnet](https://github.com/cochachyLE-Eng/Vaetech.Threading.Tasks/actions/workflows/dotnet.yml/badge.svg)](https://github.com/cochachyLE-Eng/Vaetech.Threading.Tasks/actions/workflows/dotnet.yml)|
-|**MacOS**     |[![dotnet](https://github.com/cochachyLE-Eng/Vaetech.Threading.Tasks/actions/workflows/dotnet.yml/badge.svg)](https://github.com/cochachyLE-Eng/Vaetech.Threading.Tasks/actions/workflows/dotnet.yml)|
+|**Windows**   |[![dotnet](https://github.com/cochachyLE-Eng/Vaetech.Threading.Tasks/actions/workflows/dotnet-windows.yml/badge.svg)](https://github.com/cochachyLE-Eng/Vaetech.Threading.Tasks/actions/workflows/dotnet-windows.yml)|
+|**MacOS**     |[![dotnet](https://github.com/cochachyLE-Eng/Vaetech.Threading.Tasks/actions/workflows/dotnet-macOS.yml/badge.svg)](https://github.com/cochachyLE-Eng/Vaetech.Threading.Tasks/actions/workflows/dotnet-macOS.yml)|
+|**Linux**     |[![dotnet](https://github.com/cochachyLE-Eng/Vaetech.Threading.Tasks/actions/workflows/dotnet-ubuntu.yml/badge.svg)](https://github.com/cochachyLE-Eng/Vaetech.Threading.Tasks/actions/workflows/dotnet-ubuntu.yml)|
 
 
 ## What is Vaetech.Threading.Tasks?
