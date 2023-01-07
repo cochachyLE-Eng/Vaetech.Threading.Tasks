@@ -6,7 +6,7 @@ jobs:
       strategy:
         matrix:
           os: [ubuntu-latest, windows-latest, macOS-latest]
-          dotnet-version: ['2.1.x', '3.1.x']
+          dotnet-version: ['3.1.x']
       name: Test on dotnet ${{ matrix.dotnet-version }} and ${{ matrix.os }}
       runs-on: ${{ matrix.os }}
       steps:
