@@ -92,7 +92,7 @@ will allow Vaetech.Threading.Tasks to build successfully.
 
 ### How can it be used?
 
-There are two types of processes <code>RunAll</code> and <code>Enqueue</code>. The default Process Type is <code>RunAll</code>.
+There are two types of processes <code>RunAll</code> and <code>RunInOrder</code>. The default Process Type is <code>RunAll</code>.
 
 | Type | Behavior |
 | :---: | :--- |
