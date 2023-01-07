@@ -1,4 +1,4 @@
-name: dotnet
+name: dotnet-macOS
 on: push
 
 jobs:

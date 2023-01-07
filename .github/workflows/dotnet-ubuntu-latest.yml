@@ -1,4 +1,4 @@
-name: dotnet
+name: dotnet-ubuntu
 on: push
 
 jobs:
