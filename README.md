@@ -1,4 +1,5 @@
 ﻿﻿# Vaetech.Threading.Tasks
+
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
 
 [![Join the chat at (https://badges.gitter.im/Vaetech-Threading-Tasks)](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Vaetech-Threading-Tasks/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
@@ -17,14 +18,6 @@
 ## What is Vaetech.Threading.Tasks?
 
 Vaetech.Threading.Tasks is a C# library that can be used to execute Parallel.Async actions and retrieve the immediate response, before the task queue execution completes, in .Net Framework, .Net Standard and .Net Core
-
-## Donate
-
-Vaetech.Threading.Tasks is a personal open source project that I spent several nights perfecting to make it useful, lightweight, and easy to use. I need your help to cover some implementation costs.
-
-Donating helps pay for things such as web hosting, domain registration and licenses for developer tools such as a performance profiler, memory profiler, a static code analysis tool, and more. It also helps motivate me to continue working on the project.
-
-[![](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate/?business=BH6Q2ZXHL9LXQ&no_recurring=0&currency_code=USD)
 
 ## License Information
 
