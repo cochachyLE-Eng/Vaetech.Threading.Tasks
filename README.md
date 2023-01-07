@@ -1,4 +1,5 @@
 ﻿﻿# Vaetech.Threading.Tasks
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
 
 [![Join the chat at (https://badges.gitter.im/Vaetech-Threading-Tasks)](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Vaetech-Threading-Tasks/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
@@ -104,6 +105,8 @@ There are two types of processes <code>RunAll</code> and <code>Enqueue</code>. T
 | :---: | :--- |
 |`RunAll`| Executes all the processes at the same time without respecting the order. This allows each terminated thread to work on the data without waiting for all tasks to complete.| 
 |`RunInOrder`| Executes the process one by one in the order of input. This allows threads to be debugged in order of entry.|
+
+### Invoke and InvokeAsync
 
 ```csharp
 using Vaetech.Threading.Tasks;
@@ -285,6 +288,8 @@ public static async Task<string[]> SampleMethodWithResult2Async(string processNa
     });
 }
 ```
+
+### SplitAsync
 
 It splits the List between the number of batches and sends them to new instances of the instantiated event.
 
